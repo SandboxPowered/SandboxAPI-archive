@@ -34,7 +34,7 @@ public interface InternalService {
 
     @NotNull
     static InternalService getInstance() {
-        return SandboxServiceLoader.loadService(InternalService.class);
+        return SandboxServiceLoader.getOrLoadService(InternalService.class);
     }
 
     Identity createIdentityFromString(String identity);
