@@ -16,11 +16,11 @@ public interface PlayerEntity extends LivingEntity {
 
     void sendOverlayMessage(Text text);
 
-    default void openContainer(Identity id) {
-        openContainer(id, null);
+    default void openScreen(Identity id) {
+        openScreen(id, null);
     }
 
-    void openContainer(Identity id, @Nullable CompoundTag data);
+    void openScreen(Identity id, @Nullable CompoundTag data);
 
     Optional<Position> getSleepingPosition();
 
