@@ -8,8 +8,6 @@ import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.state.FluidState;
 import org.sandboxpowered.api.util.math.Position;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Stream;
 
 public interface WorldReader {
