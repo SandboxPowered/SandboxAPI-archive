@@ -16,9 +16,9 @@ public interface Content<T extends Content<T>> {
         return Registry.getRegistryFromType(getContentType()).getIdentity();
     }
 
-    default Identity getIdentity() {
-        return Registry.getRegistryFromType(getContentType()).getIdentity(asContentType());
-    }
+    Identity getIdentity();
+
+    T setIdentity(Identity identity);
 
     default boolean isIn(Tag<T> tag) {
         return tag.contains(asContentType());

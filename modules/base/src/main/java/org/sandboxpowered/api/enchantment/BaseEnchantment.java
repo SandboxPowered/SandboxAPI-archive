@@ -1,6 +1,7 @@
 package org.sandboxpowered.api.enchantment;
 
 import org.sandboxpowered.api.item.ItemStack;
+import org.sandboxpowered.api.util.Identity;
 import org.sandboxpowered.api.util.annotation.Alpha;
 
 @Alpha
@@ -8,6 +9,7 @@ public abstract class BaseEnchantment implements Enchantment {
     private final int minLevel, maxLevel;
     private final boolean curse, treasure;
     private final Rarity rarity;
+    private Identity identity;
 
     public BaseEnchantment(int minLevel, int maxLevel, boolean curse, boolean treasure, Rarity rarity) {
         this.minLevel = minLevel;
@@ -15,6 +17,19 @@ public abstract class BaseEnchantment implements Enchantment {
         this.curse = curse;
         this.treasure = treasure;
         this.rarity = rarity;
+    }
+
+    @Override
+    public Identity getIdentity() {
+        return identity;
+    }
+
+    @Override
+    public Enchantment setIdentity(Identity identity) {
+        if (this.identity != null)
+            throw new UnsupportedOperationException("Cannot set identity on content with existing identity");
+        this.identity = identity;
+        return this;
     }
 
     @Override

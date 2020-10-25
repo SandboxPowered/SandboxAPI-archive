@@ -14,10 +14,12 @@ public interface Registrar {
 
     <T extends Content<T>> Registry.Entry<T> getEntry(Identity identity, Registry<T> registry);
 
-    <T extends Content<T>> Registry.Entry<T> register(Identity identity, T content);
+    <T extends Content<T>> Registry.Entry<T> register(T content);
 
     default <T extends Content<T>> Registry.Entry<T> register(String name, T content) {
-        return register(Identity.of(getSourceAddon().getId(), name), content);
+        if (content.getIdentity() != null)
+            throw new IllegalArgumentException("Cannot register content with existing identity to new identity");
+        return register(content.setIdentity(Identity.of(getSourceAddon().getId(), name)));
     }
 
     <T extends Service> Optional<T> getRegistrarService(Class<T> tClass);

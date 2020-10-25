@@ -6,20 +6,19 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-public final class Material {
-    private static final Map<String, Material> MATERIALS = new TreeMap<>();
+public final class ResourceMaterial {
+    private static final Map<String, ResourceMaterial> MATERIALS = new TreeMap<>();
+    private final String id;
 
-    public static Material of(String id) {
+    private ResourceMaterial(@NotNull String id) {
+        this.id = Objects.requireNonNull(id);
+    }
+
+    public static ResourceMaterial of(String id) {
         if (!id.toLowerCase().equals(id)) {
             throw new IllegalArgumentException(String.format("Material id must be lowercase got '%s'", id));
         }
-        return MATERIALS.computeIfAbsent(id, Material::new);
-    }
-
-    private final String id;
-
-    private Material(@NotNull String id) {
-        this.id = Objects.requireNonNull(id);
+        return MATERIALS.computeIfAbsent(id, ResourceMaterial::new);
     }
 
     @Override
@@ -29,7 +28,7 @@ public final class Material {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof Material && id.equals(((Material) o).id);
+        return o instanceof ResourceMaterial && id.equals(((ResourceMaterial) o).id);
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.state.Properties;
 import org.sandboxpowered.api.state.StateFactory;
 import org.sandboxpowered.api.util.Direction;
+import org.sandboxpowered.api.util.Identity;
 import org.sandboxpowered.api.util.Mono;
 import org.sandboxpowered.api.util.annotation.Internal;
 import org.sandboxpowered.api.util.math.Position;
@@ -23,6 +24,7 @@ public class BaseBlock implements Block {
     private Registry.Entry<Item> itemCache;
     private StateFactory<Block, BlockState> stateFactory;
     private BlockState baseState;
+    private Identity identity;
 
     public BaseBlock(Settings settings) {
         this.settings = settings;
@@ -42,6 +44,19 @@ public class BaseBlock implements Block {
     public final void setStateFactory(StateFactory<Block, BlockState> stateFactory) {
         this.stateFactory = stateFactory;
         this.baseState = createBaseState(stateFactory.getBaseState());
+    }
+
+    @Override
+    public Identity getIdentity() {
+        return identity;
+    }
+
+    @Override
+    public Block setIdentity(Identity identity) {
+        if (this.identity != null)
+            throw new UnsupportedOperationException("Cannot set identity on content with existing identity");
+        this.identity = identity;
+        return this;
     }
 
     protected BlockState createBaseState(BlockState baseState) {

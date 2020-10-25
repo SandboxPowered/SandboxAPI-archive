@@ -6,19 +6,19 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-public final class Type {
-    private static final Map<String, Type> TYPES = new TreeMap<>();
+public final class ResourceType {
+    private static final Map<String, ResourceType> TYPES = new TreeMap<>();
+    private final String id;
 
-    public static Type of(String id) {
+    public ResourceType(@NotNull String id) {
+        this.id = Objects.requireNonNull(id);
+    }
+
+    public static ResourceType of(String id) {
         if (!id.toLowerCase().equals(id)) {
             throw new IllegalArgumentException(String.format("Type id must be lowercase got '%s'", id));
         }
-        return TYPES.computeIfAbsent(id, Type::new);
-    }
-    private final String id;
-
-    public Type(@NotNull String id) {
-        this.id = Objects.requireNonNull(id);
+        return TYPES.computeIfAbsent(id, ResourceType::new);
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class Type {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof Type && id.equals(((Type) o).id);
+        return o instanceof ResourceType && id.equals(((ResourceType) o).id);
     }
 
     @Override
