@@ -10,5 +10,5 @@ public interface Resource<C extends Content<C>> extends Supplier<C> {
 
     ResourceMaterial getMaterial();
 
-    ResourceType getForm();
+    ResourceType<C> getForm();
 }

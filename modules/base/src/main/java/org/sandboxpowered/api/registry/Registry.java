@@ -20,7 +20,7 @@ public interface Registry<T extends Content<T>> {
 
     Entry<T> get(Identity identity);
 
-    Entry<T> register(Identity identity, T val);
+    Entry<T> register(T val);
 
     Collection<T> values();
 
