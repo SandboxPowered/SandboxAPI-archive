@@ -9,5 +9,5 @@ public interface Addon {
      */
     void init(SandboxAPI api);
 
-    void register(Registrar registrar);
+    void register(SandboxAPI api, Registrar registrar);
 }

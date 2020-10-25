@@ -1,6 +1,7 @@
 package org.sandboxpowered.api.content;
 
 import org.sandboxpowered.api.registry.Registry;
+import org.sandboxpowered.api.tags.Tag;
 import org.sandboxpowered.api.util.Identity;
 
 public interface Content<T extends Content<T>> {
@@ -17,5 +18,9 @@ public interface Content<T extends Content<T>> {
 
     default Identity getIdentity() {
         return Registry.getRegistryFromType(getContentType()).getIdentity(asContentType());
+    }
+
+    default boolean isIn(Tag<T> tag) {
+        return tag.contains(asContentType());
     }
 }

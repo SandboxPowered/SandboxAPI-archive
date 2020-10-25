@@ -5,6 +5,7 @@ import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.enchantment.Enchantment;
 import org.sandboxpowered.api.entity.LivingEntity;
 import org.sandboxpowered.api.registry.Registry;
+import org.sandboxpowered.api.tags.Tag;
 import org.sandboxpowered.api.util.Mono;
 import org.sandboxpowered.api.util.nbt.CompoundTag;
 import org.sandboxpowered.api.util.nbt.ReadableCompoundTag;
@@ -103,6 +104,10 @@ public interface ItemStack {
     }
 
     int getMaxCount();
+
+    default boolean isIn(Tag<Item> tag) {
+        return tag.contains(getItem());
+    }
 
     boolean isEqualTo(ItemStack stack);
 

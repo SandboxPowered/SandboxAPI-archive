@@ -1,4 +1,4 @@
-package org.sandboxpowered.api.state;
+package org.sandboxpowered.api.state.property;
 
 import java.util.Collection;
 import java.util.Optional;

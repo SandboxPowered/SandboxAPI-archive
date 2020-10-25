@@ -323,6 +323,12 @@ public interface Block extends ItemProvider, Content<Block> {
                 return this;
             }
 
+            public Builder setStrength(float hardness, float resistance) {
+                this.hardness = hardness;
+                this.resistance = resistance;
+                return this;
+            }
+
             public Builder setResistance(float resistance) {
                 this.resistance = resistance;
                 return this;

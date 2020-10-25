@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.state;
 
+import org.sandboxpowered.api.state.property.Property;
 import org.sandboxpowered.api.util.Direction;
 import org.sandboxpowered.api.util.SlabType;
 import org.sandboxpowered.internal.InternalService;

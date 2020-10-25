@@ -3,6 +3,8 @@ package org.sandboxpowered.api.entity;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.registry.Registry;
+import org.sandboxpowered.api.tags.Tag;
+import org.sandboxpowered.api.util.Direction;
 import org.sandboxpowered.api.util.Mono;
 import org.sandboxpowered.api.util.annotation.Alpha;
 
@@ -15,6 +17,12 @@ public interface Entity {
     Type getType();
 
     boolean isSneaking();
+
+    Direction getHorizontalFacing();
+
+    default boolean isIn(Tag<Entity.Type> tag) {
+        return tag.contains(getType());
+    }
 
     interface Type extends Content<Type> {
         Registry<Type> REGISTRY = Registry.getRegistryFromType(Type.class);

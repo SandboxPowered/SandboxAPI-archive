@@ -6,6 +6,7 @@ import org.sandboxpowered.api.entity.Entity;
 import org.sandboxpowered.api.shape.Box;
 import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.state.FluidState;
+import org.sandboxpowered.api.tags.TagManager;
 import org.sandboxpowered.api.util.math.Position;
 
 import java.util.stream.Stream;
@@ -33,4 +34,8 @@ public interface WorldReader {
     Stream<Entity> getEntitiesWithin(Box box);
 
     <T extends Entity> Stream<T> getEntitiesWithin(Box box, Class<T> filter);
+
+    long getWorldTime();
+
+    TagManager getTagManager();
 }
