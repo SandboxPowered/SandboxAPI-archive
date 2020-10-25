@@ -40,4 +40,8 @@ public final class ResourceConstants {
     public static <C extends Content<C>> ResourceType<C> type(String name, Function<ResourceMaterial, C> defaultCreator) {
         return ResourceType.of(name, defaultCreator);
     }
+
+    public static ResourceType<Item> type(String name) {
+        return ResourceType.of(name, ITEM_CREATOR);
+    }
 }
