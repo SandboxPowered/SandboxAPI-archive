@@ -29,10 +29,10 @@ public enum Direction {
     private final AxisDirection direction;
     private final Vec3i vector;
 
-    Direction(int id, int horizontalId, int invertedId, String name, AxisDirection direction, Axis axis, Vec3i vector) {
+    Direction(int id, int invertedId, int horizontalId, String name, AxisDirection direction, Axis axis, Vec3i vector) {
         this.id = id;
-        this.horizontalId = horizontalId;
         this.invertedId = invertedId;
+        this.horizontalId = horizontalId;
         this.name = name;
         this.axis = axis;
         this.direction = direction;
