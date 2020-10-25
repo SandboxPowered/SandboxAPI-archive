@@ -19,6 +19,10 @@ public class DefaultInventory implements Inventory {
         Arrays.fill(items, defaultEntry);
     }
 
+    public DefaultInventory(int size) {
+        this(size, ItemStack.empty());
+    }
+
     @Override
     public boolean isEmpty() {
         return Stream.of(items).allMatch(ItemStack::isEmpty);
