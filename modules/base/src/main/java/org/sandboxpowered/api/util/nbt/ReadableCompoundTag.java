@@ -38,7 +38,7 @@ public interface ReadableCompoundTag extends Tag {
 
     <T> List<T> getList(String key, Class<T> tagType);
 
-    CompoundTag getCompound(String key);
+    CompoundTag getCompoundTag(String key);
 
     Identity getIdentity(String key);
 
