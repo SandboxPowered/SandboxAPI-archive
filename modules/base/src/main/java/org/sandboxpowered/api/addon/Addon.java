@@ -7,7 +7,9 @@ public interface Addon {
     /**
      * General mod init, event registration etc
      */
-    void init(SandboxAPI api);
+    default void init(SandboxAPI api) {}
 
-    void register(SandboxAPI api, Registrar registrar);
+    default void register(SandboxAPI api, Registrar registrar) {}
+
+    default void finishLoad(SandboxAPI api) {}
 }

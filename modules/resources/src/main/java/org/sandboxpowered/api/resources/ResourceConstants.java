@@ -13,6 +13,7 @@ public final class ResourceConstants {
 
     private static final Function<ResourceMaterial, Item> ITEM_CREATOR = material -> new BaseItem(new Item.Settings());
 
+    public static ResourceMaterial CLAY = ResourceMaterial.of("clay");
     public static ResourceMaterial WOOD = ResourceMaterial.of("wood");
     public static ResourceMaterial COAL = ResourceMaterial.of("coal");
     public static ResourceMaterial IRON = ResourceMaterial.of("iron");
@@ -21,7 +22,9 @@ public final class ResourceConstants {
     public static ResourceMaterial REDSTONE = ResourceMaterial.of("redstone");
     public static ResourceMaterial DIAMOND = ResourceMaterial.of("diamond");
     public static ResourceMaterial EMERALD = ResourceMaterial.of("emerald");
+    public static ResourceMaterial OBSIDIAN = ResourceMaterial.of("obsidian");
     public static ResourceMaterial QUARTZ = ResourceMaterial.of("quartz");
+    public static ResourceMaterial GLOWSTONE = ResourceMaterial.of("glowstone");
     public static ResourceMaterial NETHERITE = ResourceMaterial.of("netherite");
 
     public static ResourceType<Item> INGOT = ResourceType.of("ingot", ITEM_CREATOR);

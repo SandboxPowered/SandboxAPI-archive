@@ -5,7 +5,7 @@ import org.sandboxpowered.api.registry.Registrar;
 
 import java.util.function.Supplier;
 
-public interface ResourceRegistrationService extends Registrar.Service {
+public interface ResourceService extends Registrar.Service {
     void add(ResourceMaterial material, ResourceType<?>... types);
 
     <C extends Content<C>> void add(ResourceMaterial material, ResourceType<C> type);
