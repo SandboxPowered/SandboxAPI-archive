@@ -16,6 +16,12 @@ public interface Registrar {
 
     <T extends Content<T>> Registry.Entry<T> register(T content);
 
+    default <T extends Content<T>> void register(T... content) {
+        for (T t : content) {
+            register(t);
+        }
+    }
+
     default <T extends Content<T>> Registry.Entry<T> register(String name, T content) {
         if (content.getIdentity() != null)
             throw new IllegalArgumentException("Cannot register content with existing identity to new identity");
