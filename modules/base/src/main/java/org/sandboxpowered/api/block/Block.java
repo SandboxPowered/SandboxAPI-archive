@@ -97,9 +97,9 @@ public interface Block extends ItemProvider, Content<Block> {
     }
 
     /**
-     * Updates the @{@link BlockState} when a neighbor block updates
+     * Updates the {@link BlockState} when a neighbor block updates
      *
-     * @return The @{@link BlockState} to set in the world
+     * @return The {@link BlockState} to set in the world
      */
     default BlockState updateOnNeighborChanged(BlockState state, Direction direction, BlockState otherState, World world, Position position, Position otherPosition) {
         return state;
@@ -109,12 +109,19 @@ public interface Block extends ItemProvider, Content<Block> {
     }
 
     /**
-     * Creates a new @{@link BlockEntity} for this block
+     * If the {@link BlockState} specified has a {@link BlockEntity} attached
+     */
+    default boolean hasBlockEntity(BlockState state) {
+        return false;
+    }
+
+    /**
+     * Creates a new {@link BlockEntity} for this block
      * <p>
-     * Make sure to set @{@link Settings.Builder#hasBlockEntity()} to use this
+     * Make sure to return true {@link Block#hasBlockEntity(BlockState)} to use this
      */
     @Nullable
-    default BlockEntity createBlockEntity(WorldReader reader) {
+    default BlockEntity createBlockEntity(WorldReader reader, BlockState state) {
         return null;
     }
 
@@ -232,9 +239,8 @@ public interface Block extends ItemProvider, Content<Block> {
         private final float hardness, resistance, slipperiness, velocity, jumpVelocity;
         private final int luminance;
         private final boolean randomTicks;
-        private final boolean blockEntity;
 
-        private Settings(Material material, float hardness, float resistance, float slipperiness, float velocity, float jumpVelocity, int luminance, boolean randomTicks, boolean blockEntity) {
+        private Settings(Material material, float hardness, float resistance, float slipperiness, float velocity, float jumpVelocity, int luminance, boolean randomTicks) {
             this.material = material;
             this.hardness = hardness;
             this.resistance = resistance;
@@ -243,7 +249,6 @@ public interface Block extends ItemProvider, Content<Block> {
             this.jumpVelocity = jumpVelocity;
             this.luminance = luminance;
             this.randomTicks = randomTicks;
-            this.blockEntity = blockEntity;
         }
 
         public static Builder builder(Material material) {
@@ -266,8 +271,7 @@ public interface Block extends ItemProvider, Content<Block> {
                     .setVelocity(settings.velocity)
                     .setJumpVelocity(settings.jumpVelocity)
                     .setLuminance(settings.luminance)
-                    .setRandomTicks(settings.randomTicks)
-                    .setBlockEntity(settings.blockEntity);
+                    .setRandomTicks(settings.randomTicks);
         }
 
         public boolean doesRandomTick() {
@@ -302,16 +306,11 @@ public interface Block extends ItemProvider, Content<Block> {
             return luminance;
         }
 
-        public boolean hasBlockEntity() {
-            return blockEntity;
-        }
-
         public static class Builder {
             private final Material material;
             private float hardness, resistance, slipperiness = 0.6F, velocity = 1.0F, jumpVelocity = 1.0F;
             private int luminance, opacity;
             private boolean randomTicks;
-            private boolean blockEntity;
 
             private Builder(Material material) {
                 this.material = material;
@@ -362,22 +361,12 @@ public interface Block extends ItemProvider, Content<Block> {
                 return this;
             }
 
-            public Builder hasBlockEntity() {
-                this.blockEntity = true;
-                return this;
-            }
-
             public Settings build() {
-                return new Settings(material, hardness, resistance, slipperiness, velocity, jumpVelocity, luminance, randomTicks, blockEntity);
+                return new Settings(material, hardness, resistance, slipperiness, velocity, jumpVelocity, luminance, randomTicks);
             }
 
             private Builder setRandomTicks(boolean randomTicks) {
                 this.randomTicks = randomTicks;
-                return this;
-            }
-
-            private Builder setBlockEntity(boolean blockEntity) {
-                this.blockEntity = blockEntity;
                 return this;
             }
         }

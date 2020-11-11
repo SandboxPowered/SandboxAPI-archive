@@ -22,8 +22,6 @@ public interface Registry<T extends Content<T>> {
 
     Entry<T> register(T val);
 
-    Collection<T> values();
-
     Stream<T> stream();
 
     default void forEach(Consumer<T> consumer, Predicate<T> filter) {

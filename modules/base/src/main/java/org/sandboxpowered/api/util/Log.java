@@ -6,4 +6,13 @@ public interface Log {
     void error(String message);
 
     void debug(String message);
+
+    void info(String message, Object... args);
+
+    void error(String message, Object... args);
+
+    void debug(String message, Object... args);
+
+    void error(String message, Throwable e);
+
 }

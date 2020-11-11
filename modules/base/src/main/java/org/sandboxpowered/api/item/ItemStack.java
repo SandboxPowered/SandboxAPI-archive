@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.item;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.enchantment.Enchantment;
@@ -105,15 +106,15 @@ public interface ItemStack {
 
     int getMaxCount();
 
-    default boolean isIn(Tag<Item> tag) {
+    default boolean isIn(@NotNull Tag<Item> tag) {
         return tag.contains(getItem());
     }
 
-    boolean isEqualTo(ItemStack stack);
+    boolean isEqualTo(@NotNull ItemStack stack);
 
-    boolean isEqualToIgnoreDurability(ItemStack stack);
+    boolean isEqualToIgnoreDurability(@NotNull ItemStack stack);
 
-    boolean areTagsEqual(ItemStack stack);
+    boolean areTagsEqual(@NotNull ItemStack stack);
 
     boolean isDamaged();
 
