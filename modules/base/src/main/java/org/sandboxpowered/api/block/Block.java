@@ -2,6 +2,7 @@ package org.sandboxpowered.api.block;
 
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.block.entity.BlockEntity;
+import org.sandboxpowered.api.block.multipart.Slot;
 import org.sandboxpowered.api.client.GraphicsMode;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
@@ -82,6 +83,14 @@ public interface Block extends ItemProvider, Content<Block> {
 
     default Shape getShape(WorldReader reader, Position position, BlockState state) {
         return Shape.fullCube();
+    }
+
+    default Shape getOcclusionShape(WorldReader reader, Position position, BlockState state) {
+        return getShape(reader, position, state);
+    }
+
+    default Slot getSlot(BlockState state) {
+        return Slot.BLOCK;
     }
 
     /**

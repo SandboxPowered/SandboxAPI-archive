@@ -2,6 +2,7 @@ package org.sandboxpowered.api.world;
 
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.block.entity.BlockEntity;
+import org.sandboxpowered.api.block.multipart.Slot;
 import org.sandboxpowered.api.entity.Entity;
 import org.sandboxpowered.api.shape.Box;
 import org.sandboxpowered.api.state.BlockState;
@@ -12,10 +13,19 @@ import org.sandboxpowered.api.util.math.Position;
 import java.util.stream.Stream;
 
 public interface WorldReader {
-    BlockState getBlockState(Position position);
+    default BlockState getBlockState(Position position) {
+        return getBlockState(position, Slot.BLOCK);
+    }
+
+    BlockState getBlockState(Position position, Slot slot);
 
     @Nullable
-    BlockEntity getBlockEntity(Position position);
+    default BlockEntity getBlockEntity(Position position) {
+        return getBlockEntity(position, Slot.BLOCK);
+    }
+
+    @Nullable
+    BlockEntity getBlockEntity(Position position, Slot slot);
 
     FluidState getFluidState(Position position);
 
