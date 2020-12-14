@@ -85,6 +85,10 @@ public interface Block extends ItemProvider, Content<Block> {
         return Shape.fullCube();
     }
 
+    default Shape getCollisionShape(WorldReader reader, Position position, BlockState state) {
+        return getShape(reader, position, state);
+    }
+
     default Shape getOcclusionShape(WorldReader reader, Position position, BlockState state) {
         return getShape(reader, position, state);
     }

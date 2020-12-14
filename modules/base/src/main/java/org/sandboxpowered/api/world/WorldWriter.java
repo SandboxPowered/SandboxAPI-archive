@@ -1,10 +1,7 @@
 package org.sandboxpowered.api.world;
 
-import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.block.Block;
 import org.sandboxpowered.api.block.multipart.Slot;
-import org.sandboxpowered.api.entity.Entity;
-import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.util.math.Position;
@@ -35,12 +32,4 @@ public interface WorldWriter {
     default boolean setBlockState(Position position, Slot slot, BlockState state) {
         return setBlockState(position, slot, state, BlockFlag.DEFAULT);
     }
-
-    default boolean breakBlock(Position position, boolean drop) {
-        return breakBlock(position, drop, null);
-    }
-
-    boolean breakBlock(Position position, boolean drop, @Nullable Entity entity);
-
-    void dropItem(Position position, ItemStack stack);
 }
