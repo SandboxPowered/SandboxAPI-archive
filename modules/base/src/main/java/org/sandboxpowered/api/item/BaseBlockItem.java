@@ -12,7 +12,7 @@ public class BaseBlockItem extends BaseItem implements BlockItem {
     }
 
     @Override
-    public Block asBlock() {
+    public BaseBlock asBlock() {
         return block;
     }
 }

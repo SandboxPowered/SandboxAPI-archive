@@ -4,6 +4,8 @@ import org.sandboxpowered.api.addon.AddonInfo;
 import org.sandboxpowered.api.util.Log;
 import org.sandboxpowered.api.util.Side;
 
+import java.nio.file.Path;
+
 public interface SandboxAPI {
     /**
      * Checks if a sandbox addon is loaded
@@ -27,6 +29,8 @@ public interface SandboxAPI {
     AddonInfo getSourceAddon();
 
     Side getSide();
+
+    Path getConfigDirectory();
 
     default void execute(Side side, Runnable runnable) {
         if (getSide() == side) {

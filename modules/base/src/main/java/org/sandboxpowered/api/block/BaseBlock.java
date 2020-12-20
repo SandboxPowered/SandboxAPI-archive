@@ -5,6 +5,8 @@ import org.sandboxpowered.api.block.entity.BlockEntity;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.component.Components;
 import org.sandboxpowered.api.component.fluid.FluidLoggingContainer;
+import org.sandboxpowered.api.item.BaseBlockItem;
+import org.sandboxpowered.api.item.BlockItem;
 import org.sandboxpowered.api.item.Item;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.state.BlockState;
@@ -49,6 +51,12 @@ public class BaseBlock implements Block {
     @Override
     public Identity getIdentity() {
         return identity;
+    }
+
+    public BlockItem createBlockItem() {
+        if (getSettings().giveItemBlock())
+            return new BaseBlockItem(this, new Item.Settings());
+        return null;
     }
 
     @Override
