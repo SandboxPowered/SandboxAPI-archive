@@ -12,6 +12,7 @@ import org.sandboxpowered.api.fluid.Fluid;
 import org.sandboxpowered.api.fluid.FluidStack;
 import org.sandboxpowered.api.item.Item;
 import org.sandboxpowered.api.item.ItemStack;
+import org.sandboxpowered.api.item.tool.ToolMaterial;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.server.Server;
 import org.sandboxpowered.api.shape.Box;
@@ -92,4 +93,6 @@ public interface InternalService {
     Box box_of(double minX, double minY, double minZ, double maxX, double maxY, double maxZ);
 
     Box box_of(Position pos1, Position pos2);
+
+    ToolMaterial toolMaterial(String material);
 }
