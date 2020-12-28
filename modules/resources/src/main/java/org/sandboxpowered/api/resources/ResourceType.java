@@ -18,7 +18,7 @@ public final class ResourceType<C extends Content<C>> {
     public ResourceType(@NotNull String id, Function<ResourceMaterial, C> defaultCreator, Function<C, ItemStack> stackFunction) {
         this.id = Objects.requireNonNull(id);
         this.defaultCreator = defaultCreator;
-        this.stackFunction=stackFunction;
+        this.stackFunction = stackFunction;
     }
 
     public static <C extends Content<C>> ResourceType<C> of(String id, Function<ResourceMaterial, C> defaultCreator, Function<C, ItemStack> stackFunction) {

@@ -39,7 +39,7 @@ public final class ResourceConstants {
         return ResourceMaterial.of(name);
     }
 
-    public static <C extends Content<C>> ResourceType<C> type(String name, Function<ResourceMaterial, C> defaultCreator, Function<C,ItemStack> stackFunction) {
+    public static <C extends Content<C>> ResourceType<C> type(String name, Function<ResourceMaterial, C> defaultCreator, Function<C, ItemStack> stackFunction) {
         return ResourceType.of(name, defaultCreator, stackFunction);
     }
 

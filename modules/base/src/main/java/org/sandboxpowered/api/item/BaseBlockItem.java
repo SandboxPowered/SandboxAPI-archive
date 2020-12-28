@@ -1,7 +1,6 @@
 package org.sandboxpowered.api.item;
 
 import org.sandboxpowered.api.block.BaseBlock;
-import org.sandboxpowered.api.block.Block;
 
 public class BaseBlockItem extends BaseItem implements BlockItem {
     private final BaseBlock block;

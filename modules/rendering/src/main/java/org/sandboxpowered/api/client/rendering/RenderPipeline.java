@@ -20,13 +20,13 @@ public interface RenderPipeline {
 
     TextRenderer getTextRenderer();
 
+    interface PipelineService {
+        RenderPipeline getPipeline(Identity identity) throws UnsupportedRenderPipelineException;
+    }
+
     class UnsupportedRenderPipelineException extends RuntimeException {
         public UnsupportedRenderPipelineException(Identity identity) {
             super(String.format("Render Pipeline '%s' is unsupported.", identity.toString()));
         }
-    }
-
-    interface PipelineService {
-        RenderPipeline getPipeline(Identity identity) throws UnsupportedRenderPipelineException;
     }
 }

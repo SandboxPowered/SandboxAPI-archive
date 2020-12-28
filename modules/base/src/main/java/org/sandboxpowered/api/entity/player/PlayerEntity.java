@@ -29,4 +29,6 @@ public interface PlayerEntity extends LivingEntity {
     boolean isSleepingIgnored();
 
     void setSleepingIgnored(boolean ignored);
+
+    void swingHand(Hand hand);
 }

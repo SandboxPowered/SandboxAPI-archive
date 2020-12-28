@@ -1,6 +1,5 @@
 package org.sandboxpowered.api.content;
 
-import org.sandboxpowered.api.item.BlockItem;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.tags.Tag;
 import org.sandboxpowered.api.util.Identity;

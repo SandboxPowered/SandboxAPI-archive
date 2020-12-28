@@ -4,7 +4,6 @@ import org.sandboxpowered.api.client.rendering.VertexConsumer;
 import org.sandboxpowered.api.util.math.MatrixStack;
 import org.sandboxpowered.api.world.World;
 import org.sandboxpowered.eventhandler.EventHandler;
-import org.sandboxpowered.eventhandler.ResettableEventHandler;
 import org.sandboxpowered.internal.InternalService;
 
 public final class RenderEvents {

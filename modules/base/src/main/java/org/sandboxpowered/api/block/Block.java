@@ -22,6 +22,8 @@ import org.sandboxpowered.api.util.math.Vec3f;
 import org.sandboxpowered.api.world.World;
 import org.sandboxpowered.api.world.WorldReader;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -226,6 +228,10 @@ public interface Block extends ItemProvider, Content<Block> {
 
     default RenderType getRenderType() {
         return RenderType.MODEL;
+    }
+
+    default List<ItemStack> getDrops(World world, Position position, BlockState state) {
+        return Collections.emptyList();
     }
 
     enum BlockRenderLayer {
