@@ -18,6 +18,7 @@ import org.sandboxpowered.api.server.Server;
 import org.sandboxpowered.api.shape.Box;
 import org.sandboxpowered.api.shape.Shape;
 import org.sandboxpowered.api.state.property.Property;
+import org.sandboxpowered.api.tags.Tag;
 import org.sandboxpowered.api.util.Identity;
 import org.sandboxpowered.api.util.annotation.Internal;
 import org.sandboxpowered.api.util.math.Position;
@@ -95,4 +96,6 @@ public interface InternalService {
     Box box_of(Position pos1, Position pos2);
 
     ToolMaterial toolMaterial(String material);
+
+    Tag<Block> getBlockTag(String string);
 }

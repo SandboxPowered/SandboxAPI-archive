@@ -1,8 +1,7 @@
 package org.sandboxpowered.api.state;
 
 import org.sandboxpowered.api.state.property.Property;
-import org.sandboxpowered.api.util.Direction;
-import org.sandboxpowered.api.util.SlabType;
+import org.sandboxpowered.api.util.*;
 import org.sandboxpowered.internal.InternalService;
 
 public class Properties {
@@ -74,6 +73,10 @@ public class Properties {
     public static final Property<Direction.Axis> HORIZONTAL_AXIS = getProperty("horizontal_axis");
     public static final Property<Direction.Axis> AXIS = getProperty("axis");
     public static final Property<SlabType> SLAB_TYPE = getProperty("slab_type");
+    public static final Property<Half> HALF = getProperty("half");
+    public static final Property<Hinge> HINGE = getProperty("hinge");
+    public static final Property<BedHalf> BED_HALF = getProperty("bed_half");
+    public static final Property<StairShape> STAIR_SHAPE = getProperty("stair_shape");
 
     private static <X extends Comparable<X>> Property<X> getProperty(String s) {
         Property<X> property = InternalService.getInstance().getProperty(s);
