@@ -8,12 +8,15 @@ import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.entity.Entity;
 import org.sandboxpowered.api.entity.player.Hand;
 import org.sandboxpowered.api.entity.player.PlayerEntity;
+import org.sandboxpowered.api.fluid.Fluids;
 import org.sandboxpowered.api.item.Item;
 import org.sandboxpowered.api.item.ItemProvider;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.shape.Shape;
 import org.sandboxpowered.api.state.BlockState;
+import org.sandboxpowered.api.state.FluidState;
+import org.sandboxpowered.api.state.Properties;
 import org.sandboxpowered.api.state.StateFactory;
 import org.sandboxpowered.api.util.*;
 import org.sandboxpowered.api.util.math.Position;
@@ -232,6 +235,13 @@ public interface Block extends ItemProvider, Content<Block> {
 
     default List<ItemStack> getDrops(World world, Position position, BlockState state) {
         return Collections.emptyList();
+    }
+
+    default FluidState getFluidState(BlockState state) {
+        if (state.contains(Properties.WATERLOGGED) && state.get(Properties.WATERLOGGED)) {
+            return Fluids.WATER.get().getBaseState();
+        }
+        return Fluids.EMPTY.get().getBaseState();
     }
 
     enum BlockRenderLayer {

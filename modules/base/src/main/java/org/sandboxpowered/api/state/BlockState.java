@@ -82,6 +82,10 @@ public interface BlockState extends PropertyContainer<BlockState> {
         return getBlock().getStrongPower(blockView, pos, this, direction);
     }
 
+    default FluidState getFluidState() {
+        return getBlock().getFluidState(this);
+    }
+
     default boolean is(Block block) {
         return getBlock().isSame(block) || block.isSame(getBlock());
     }
