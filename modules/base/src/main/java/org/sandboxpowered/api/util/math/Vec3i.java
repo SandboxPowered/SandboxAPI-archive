@@ -12,4 +12,16 @@ public interface Vec3i {
     int getY();
 
     int getZ();
+
+    Vec3i add(int x, int y, int z);
+
+    Vec3i sub(int x, int y, int z);
+
+    default Vec3i add(Vec3i vec) {
+        return add(vec.getX(), vec.getY(), vec.getZ());
+    }
+
+    default Vec3i sub(Vec3i vec) {
+        return sub(vec.getX(), vec.getY(), vec.getZ());
+    }
 }

@@ -99,9 +99,21 @@ public interface Position extends Vec3i {
         return offset(Direction.WEST, amount);
     }
 
+    @Override
     Position add(int x, int y, int z);
 
+    @Override
     Position sub(int x, int y, int z);
+
+    @Override
+    default Position add(Vec3i vec) {
+        return add(vec.getX(), vec.getY(), vec.getZ());
+    }
+
+    @Override
+    default Position sub(Vec3i vec) {
+        return sub(vec.getX(), vec.getY(), vec.getZ());
+    }
 
     interface Mutable extends Position {
 
