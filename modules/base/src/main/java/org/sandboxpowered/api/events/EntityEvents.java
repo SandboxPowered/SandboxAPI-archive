@@ -1,6 +1,5 @@
 package org.sandboxpowered.api.events;
 
-import org.sandboxpowered.api.entity.Entity;
 import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.util.math.Position;
 import org.sandboxpowered.api.world.World;
@@ -14,10 +13,10 @@ public final class EntityEvents {
     public static final EventHandler<AnvilFallEvent> ANVIL_FALL = InternalService.getInstance().createEventHandler();
 
     public interface AnvilFallEvent {
-        void onEvent(World world, Position pos, BlockState fallingState, BlockState hitState, Entity entity, List<Entity> hitEntities);
+        void onEvent(World world, Position pos, BlockState fallingState, BlockState hitState, int entity, List<Integer> hitEntities);
     }
 
     interface SpawnEvent {
-        boolean onEvent(Entity entity);
+        boolean onEvent(int entity);
     }
 }

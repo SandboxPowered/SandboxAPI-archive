@@ -3,7 +3,6 @@ package org.sandboxpowered.api.item;
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
-import org.sandboxpowered.api.entity.LivingEntity;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.util.InteractionResult;
@@ -41,11 +40,11 @@ public interface Item extends Content<Item> {
         return false;
     }
 
-    default boolean onHit(ItemStack stack, LivingEntity attacker, LivingEntity victim) {
+    default boolean onHit(ItemStack stack, World world, int attacker, int victim) {
         return false;
     }
 
-    default boolean onMine(ItemStack stack, World world, Position pos, BlockState state, LivingEntity user) {
+    default boolean onMine(ItemStack stack, World world, Position pos, BlockState state, int user) {
         return false;
     }
 

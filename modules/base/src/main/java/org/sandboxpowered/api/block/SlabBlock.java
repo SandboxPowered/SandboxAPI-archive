@@ -1,7 +1,6 @@
 package org.sandboxpowered.api.block;
 
 import org.sandboxpowered.api.entity.player.Hand;
-import org.sandboxpowered.api.entity.player.PlayerEntity;
 import org.sandboxpowered.api.fluid.Fluids;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.shape.Shape;
@@ -41,7 +40,7 @@ public class SlabBlock extends BaseBlock implements FluidLoggable {
     }
 
     @Override
-    public BlockState getStateForPlacement(WorldReader reader, Position pos, PlayerEntity player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
+    public BlockState getStateForPlacement(WorldReader reader, Position pos, int player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
         BlockState state = reader.getBlockState(pos);
         if (state.is(this)) {
             return state.with(Properties.SLAB_TYPE, SlabType.DOUBLE).with(Properties.WATERLOGGED, false);
@@ -52,7 +51,7 @@ public class SlabBlock extends BaseBlock implements FluidLoggable {
     }
 
     @Override
-    public boolean canReplace(WorldReader reader, Position pos, BlockState currentState, PlayerEntity player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
+    public boolean canReplace(WorldReader reader, Position pos, BlockState currentState, int player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
         SlabType slabType = currentState.get(Properties.SLAB_TYPE);
         if (slabType != SlabType.DOUBLE && asItem().filter(item -> item == stack.getItem()).isPresent()) {
             boolean isAbove = hitPos.getY() - pos.getY() > 0.5D;

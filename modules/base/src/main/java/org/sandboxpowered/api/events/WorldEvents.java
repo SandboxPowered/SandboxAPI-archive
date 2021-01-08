@@ -1,9 +1,9 @@
 package org.sandboxpowered.api.events;
 
-import org.sandboxpowered.api.entity.Entity;
 import org.sandboxpowered.api.shape.Shape;
 import org.sandboxpowered.api.util.math.Vec3d;
 import org.sandboxpowered.api.world.World;
+import org.sandboxpowered.api.world.WorldReader;
 import org.sandboxpowered.eventhandler.EventHandler;
 import org.sandboxpowered.internal.InternalService;
 
@@ -14,10 +14,10 @@ public final class WorldEvents {
     public static final EventHandler<AddCollisionBoxes> ADD_COLLISION_BOXES = InternalService.getInstance().createEventHandler();
 
     public interface LightningStrikeEvent {
-        void onEvent(World world, Vec3d position, List<Entity> hitEntities);
+        void onEvent(World world, Vec3d position, List<Integer> hitEntities);
     }
 
     public interface AddCollisionBoxes {
-        List<Shape> getShapes(Entity collidingEntity, List<Shape> shapes);
+        List<Shape> getShapes(WorldReader reader, int collidingEntity, List<Shape> shapes);
     }
 }

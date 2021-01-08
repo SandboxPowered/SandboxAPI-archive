@@ -1,11 +1,10 @@
 package org.sandboxpowered.api.enchantment;
 
 import org.sandboxpowered.api.content.Content;
-import org.sandboxpowered.api.entity.Entity;
-import org.sandboxpowered.api.entity.LivingEntity;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.util.annotation.Beta;
+import org.sandboxpowered.api.world.World;
 
 @Beta
 public interface Enchantment extends Content<Enchantment> {
@@ -23,10 +22,10 @@ public interface Enchantment extends Content<Enchantment> {
 
     Rarity getRarity();
 
-    default void onTargetDamage(LivingEntity self, Entity victim, int level) {
+    default void onTargetDamage(World world, int self, int victim, int level) {
     }
 
-    default void onUserDamage(LivingEntity self, Entity attacker, int level) {
+    default void onUserDamage(World world, int self, int attacker, int level) {
     }
 
     @Override

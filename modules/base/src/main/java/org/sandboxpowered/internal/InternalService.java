@@ -7,7 +7,6 @@ import org.sandboxpowered.api.block.entity.BlockEntity;
 import org.sandboxpowered.api.client.Client;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
-import org.sandboxpowered.api.entity.Entity;
 import org.sandboxpowered.api.fluid.Fluid;
 import org.sandboxpowered.api.fluid.FluidStack;
 import org.sandboxpowered.api.item.Item;
@@ -70,8 +69,6 @@ public interface InternalService {
     Position.Mutable createMutablePosition(int x, int y, int z);
 
     <T> Component<T> componentFunction(Class<T> c);
-
-    Entity.Type entityTypeEntityFunction(Entity e);
 
     FluidStack fluidStackFunction(Fluid fluid, int amount);
 

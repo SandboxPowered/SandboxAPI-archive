@@ -4,12 +4,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.enchantment.Enchantment;
-import org.sandboxpowered.api.entity.LivingEntity;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.tags.Tag;
 import org.sandboxpowered.api.util.Mono;
 import org.sandboxpowered.api.util.nbt.CompoundTag;
 import org.sandboxpowered.api.util.nbt.ReadableCompoundTag;
+import org.sandboxpowered.api.world.World;
 import org.sandboxpowered.internal.InternalService;
 
 import java.util.Set;
@@ -124,5 +124,5 @@ public interface ItemStack {
 
     int getDamage();
 
-    void damage(int damage, LivingEntity entity);
+    void damage(int damage, World world, int entity);
 }

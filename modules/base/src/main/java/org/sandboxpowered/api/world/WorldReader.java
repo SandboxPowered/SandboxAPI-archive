@@ -2,14 +2,13 @@ package org.sandboxpowered.api.world;
 
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.block.entity.BlockEntity;
-import org.sandboxpowered.api.entity.Entity;
-import org.sandboxpowered.api.shape.Box;
+import org.sandboxpowered.api.ecs.Blueprint;
+import org.sandboxpowered.api.ecs.EntityComponent;
+import org.sandboxpowered.api.ecs.Mapper;
 import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.state.FluidState;
 import org.sandboxpowered.api.tags.TagManager;
 import org.sandboxpowered.api.util.math.Position;
-
-import java.util.stream.Stream;
 
 public interface WorldReader {
     BlockState getBlockState(Position position);
@@ -31,11 +30,15 @@ public interface WorldReader {
         return height >= 0 && height < 256;
     }
 
-    Stream<Entity> getEntitiesWithin(Box box);
-
-    <T extends Entity> Stream<T> getEntitiesWithin(Box box, Class<T> filter);
-
     long getWorldTime();
 
     TagManager getTagManager();
+
+    <T extends EntityComponent> Mapper<T> getMapper(Class<T> type);
+
+    int createEntity();
+
+    int createEntity(Blueprint blueprint);
+
+    void removeEntity(int entity);
 }
