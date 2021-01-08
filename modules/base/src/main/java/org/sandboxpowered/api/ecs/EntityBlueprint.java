@@ -1,4 +1,4 @@
 package org.sandboxpowered.api.ecs;
 
-public interface EntityComponent {
+public interface EntityBlueprint {
 }

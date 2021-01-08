@@ -1,6 +1,6 @@
 package org.sandboxpowered.api.ecs;
 
-public interface Mapper<C> {
+public interface ComponentMapper<C> {
     C get(int entityId);
 
     boolean has(int entityId);

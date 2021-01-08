@@ -22,6 +22,7 @@ import org.sandboxpowered.api.util.Identity;
 import org.sandboxpowered.api.util.annotation.Internal;
 import org.sandboxpowered.api.util.math.Position;
 import org.sandboxpowered.api.util.math.Vec2i;
+import org.sandboxpowered.api.util.math.Vec3d;
 import org.sandboxpowered.api.util.math.Vec3i;
 import org.sandboxpowered.api.util.nbt.CompoundTag;
 import org.sandboxpowered.api.util.nbt.ReadableCompoundTag;
@@ -95,4 +96,6 @@ public interface InternalService {
     ToolMaterial toolMaterial(String material);
 
     Tag<Block> getBlockTag(String string);
+
+    Vec3d createVec3d(double x, double y, double z);
 }

@@ -2,9 +2,9 @@ package org.sandboxpowered.api.world;
 
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.block.entity.BlockEntity;
-import org.sandboxpowered.api.ecs.Blueprint;
-import org.sandboxpowered.api.ecs.EntityComponent;
-import org.sandboxpowered.api.ecs.Mapper;
+import org.sandboxpowered.api.ecs.EntityBlueprint;
+import org.sandboxpowered.api.ecs.component.EntityComponent;
+import org.sandboxpowered.api.ecs.ComponentMapper;
 import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.state.FluidState;
 import org.sandboxpowered.api.tags.TagManager;
@@ -34,11 +34,11 @@ public interface WorldReader {
 
     TagManager getTagManager();
 
-    <T extends EntityComponent> Mapper<T> getMapper(Class<T> type);
+    <T extends EntityComponent> ComponentMapper<T> getMapper(Class<T> type);
 
     int createEntity();
 
-    int createEntity(Blueprint blueprint);
+    int createEntity(EntityBlueprint blueprint);
 
     void removeEntity(int entity);
 }

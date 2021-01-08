@@ -1,6 +1,25 @@
 package org.sandboxpowered.api.ecs;
 
-public abstract class EntitySystem {
+import org.sandboxpowered.api.world.World;
+
+/**
+ * Basic system to run on the world
+ * <p>
+ * Flow:
+ * <p>
+ * {@link #begin()} Called before entities are processed.
+ * <p>
+ * {@link #processSystem()} Called once per tick.
+ * <p>
+ * {@link #end()} Called after entities have been processed.
+ */
+public abstract class BaseSystem {
+    private final World world;
+
+    public BaseSystem(World world) {
+        this.world = world;
+    }
+
     /**
      * Called before system processing begins.
      */
@@ -10,11 +29,10 @@ public abstract class EntitySystem {
     /**
      * Process system.
      * <p>
-     * Does nothing if {@link #doProcessing()} is false or the system
-     * is disabled.
+     * Does nothing if {@link #shouldProcess()} is false or the system is disabled.
      */
     public final void process() {
-        if (doProcessing()) {
+        if (shouldProcess()) {
             begin();
             processSystem();
             end();
@@ -34,10 +52,10 @@ public abstract class EntitySystem {
 
     /**
      * Does the system desire processing. Useful when the system is enabled, but only occasionally needs to process. This only affects processing, and does not affect events or subscription lists.
-     * Returns:
-     * true if the system should be processed, false if not.
+     *
+     * @return true if the system should be processed, false if not.
      */
-    protected boolean doProcessing() {
+    protected boolean shouldProcess() {
         return true;
     }
 }
