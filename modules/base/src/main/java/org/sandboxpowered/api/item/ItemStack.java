@@ -3,6 +3,7 @@ package org.sandboxpowered.api.item;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.component.Component;
+import org.sandboxpowered.api.ecs.Entity;
 import org.sandboxpowered.api.enchantment.Enchantment;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.tags.Tag;
@@ -123,6 +124,8 @@ public interface ItemStack {
     int getMaxDamage();
 
     int getDamage();
+
+    void damage(int damage, World world, Entity entity);
 
     void damage(int damage, World world, int entity);
 }

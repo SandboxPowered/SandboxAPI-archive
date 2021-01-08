@@ -5,6 +5,7 @@ import org.sandboxpowered.api.block.Block;
 import org.sandboxpowered.api.block.Material;
 import org.sandboxpowered.api.client.GraphicsMode;
 import org.sandboxpowered.api.component.Component;
+import org.sandboxpowered.api.ecs.Entity;
 import org.sandboxpowered.api.entity.player.Hand;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.registry.Registry;
@@ -30,14 +31,14 @@ public interface BlockState extends PropertyContainer<BlockState> {
     }
 
     /**
-     * @deprecated <p> Use {@link BlockState#canReplace(WorldReader, Position, int, Hand, ItemStack, Direction, Vec3d)} instead.
+     * @deprecated <p> Use {@link BlockState#canReplace(WorldReader, Position, Entity, Hand, ItemStack, Direction, Vec3d)} instead.
      */
     @Deprecated
     default boolean canReplace() {
         return getBlock().canReplace(this);
     }
 
-    default boolean canReplace(WorldReader reader, Position pos, int player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
+    default boolean canReplace(WorldReader reader, Position pos, Entity player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
         return getBlock().canReplace(reader, pos, this, player, hand, stack, side, hitPos);
     }
 

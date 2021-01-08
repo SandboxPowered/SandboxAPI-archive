@@ -5,6 +5,7 @@ import org.sandboxpowered.api.block.entity.BlockEntity;
 import org.sandboxpowered.api.client.GraphicsMode;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
+import org.sandboxpowered.api.ecs.Entity;
 import org.sandboxpowered.api.entity.player.Hand;
 import org.sandboxpowered.api.fluid.Fluids;
 import org.sandboxpowered.api.item.Item;
@@ -60,18 +61,18 @@ public interface Block extends ItemProvider, Content<Block> {
      *
      * @return The {@link InteractionResult} of the interaction
      */
-    default InteractionResult onBlockUsed(World world, Position pos, BlockState state, int player, Hand hand, Direction side, Vec3f hit) {
+    default InteractionResult onBlockUsed(World world, Position pos, BlockState state, Entity player, Hand hand, Direction side, Vec3f hit) {
         return InteractionResult.IGNORE;
     }
 
     /**
      * Gets called when the block is clicked by a Player
      */
-    default void onBlockClicked(World world, Position pos, BlockState state, int player) {
+    default void onBlockClicked(World world, Position pos, BlockState state, Entity player) {
 
     }
 
-    default BlockState getStateForPlacement(WorldReader reader, Position pos, int player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
+    default BlockState getStateForPlacement(WorldReader reader, Position pos, Entity player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
         return getBaseState();
     }
 
@@ -98,7 +99,7 @@ public interface Block extends ItemProvider, Content<Block> {
     /**
      * Gets called when the block is placed
      */
-    default void onBlockPlaced(World world, Position position, BlockState state, int entity, ItemStack itemStack) {
+    default void onBlockPlaced(World world, Position position, BlockState state, Entity entity, ItemStack itemStack) {
     }
 
     /**
@@ -145,14 +146,14 @@ public interface Block extends ItemProvider, Content<Block> {
     }
 
     /**
-     * @deprecated <p> Use {@link Block#canReplace(WorldReader, Position, BlockState, int, Hand, ItemStack, Direction, Vec3d)} instead.
+     * @deprecated <p> Use {@link Block#canReplace(WorldReader, Position, BlockState, Entity, Hand, ItemStack, Direction, Vec3d)} instead.
      */
     @Deprecated
     default boolean canReplace(BlockState state) {
         return getMaterial(state).isReplaceable();
     }
 
-    default boolean canReplace(WorldReader reader, Position pos, BlockState currentState, int player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
+    default boolean canReplace(WorldReader reader, Position pos, BlockState currentState, Entity player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
         return canReplace(currentState);
     }
 
@@ -160,7 +161,7 @@ public interface Block extends ItemProvider, Content<Block> {
         return false;
     }
 
-    default void onEntityWalk(World world, Position position, int entity) {
+    default void onEntityWalk(World world, Position position, Entity entity) {
     }
 
     default boolean canEntitySpawnWithin(BlockState state) {

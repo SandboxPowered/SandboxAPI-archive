@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.events;
 
+import org.sandboxpowered.api.ecs.Entity;
 import org.sandboxpowered.api.entity.player.Hand;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.state.BlockState;
@@ -16,14 +17,14 @@ public final class BlockEvents {
     public static final EventHandler<InteractEvent> INTERACT = InternalService.getInstance().createEventHandler();
 
     public interface BreakEvent {
-        void onEvent(World world, Position position, BlockState state, int player, ItemStack tool, Cancellable cancellable);
+        void onEvent(World world, Position position, BlockState state, Entity player, ItemStack tool, Cancellable cancellable);
     }
 
     public interface PlaceEvent {
-        BlockState onEvent(World world, Position position, BlockState state, int player, ItemStack stack, Cancellable cancellable);
+        BlockState onEvent(World world, Position position, BlockState state, Entity player, ItemStack stack, Cancellable cancellable);
     }
 
     public interface InteractEvent {
-        InteractionResult onEvent(World world, Position position, BlockState state, int player, Hand hand, ItemStack stack, InteractionResult result);
+        InteractionResult onEvent(World world, Position position, BlockState state, Entity player, Hand hand, ItemStack stack, InteractionResult result);
     }
 }
