@@ -51,10 +51,6 @@ public interface InternalService {
 
     <T extends BlockEntity> BlockEntity.Type<T> blockEntityTypeFunction(Supplier<T> supplier, Block[] blocks);
 
-    ItemStack createItemStack(Item item, int amount);
-
-    ItemStack createItemStackFromTag(ReadableCompoundTag tag);
-
     <T extends Content<T>> Registry<T> registryFunction(Class<T> c);
 
     CompoundTag createCompoundTag();

@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.ecs.Entity;
 import org.sandboxpowered.api.enchantment.Enchantment;
+import org.sandboxpowered.api.inject.Sandbox;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.tags.Tag;
 import org.sandboxpowered.api.util.Mono;
@@ -22,7 +23,11 @@ public interface ItemStack {
     }
 
     static ItemStack of(Registry.Entry<Item> entry, int amount) {
-        return entry.getAsOptional().map(i -> of(i, amount)).orElse(empty());
+        return of(entry, amount, null);
+    }
+
+    static ItemStack of(Registry.Entry<Item> entry, int amount, @Nullable CompoundTag nbt) {
+        return entry.getAsOptional().map(i -> of(i, amount, nbt)).orElse(empty());
     }
 
     static ItemStack of(ItemProvider item) {
@@ -30,7 +35,11 @@ public interface ItemStack {
     }
 
     static ItemStack of(ItemProvider item, int amount) {
-        return item.asItem().map(i -> of(i, amount)).orElse(empty());
+        return of(item, amount, null);
+    }
+
+    static ItemStack of(ItemProvider item, int amount, @Nullable CompoundTag nbt) {
+        return item.asItem().map(i -> of(i, amount, nbt)).orElse(empty());
     }
 
     static ItemStack of(Item item) {
@@ -38,7 +47,11 @@ public interface ItemStack {
     }
 
     static ItemStack of(Item item, int amount) {
-        return InternalService.getInstance().createItemStack(item, amount);
+        return of(item, amount, null);
+    }
+
+    static ItemStack of(Item item, int amount, @Nullable CompoundTag nbt) {
+        return Sandbox.getFactoryProvider().get(Factory.class).create(item, amount, nbt);
     }
 
     static ItemStack empty() {
@@ -46,7 +59,7 @@ public interface ItemStack {
     }
 
     static ItemStack read(ReadableCompoundTag tag) {
-        return InternalService.getInstance().createItemStackFromTag(tag);
+        return Sandbox.getFactoryProvider().get(Factory.class).fromTag(tag);
     }
 
     boolean isEmpty();
@@ -134,4 +147,10 @@ public interface ItemStack {
     void damage(int damage, Entity entity);
 
     void damage(int damage, World world, int entity);
+
+    interface Factory {
+        ItemStack create(Item item, int count, @Nullable CompoundTag nbt);
+
+        ItemStack fromTag(ReadableCompoundTag tag);
+    }
 }
