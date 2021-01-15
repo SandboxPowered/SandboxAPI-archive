@@ -123,17 +123,17 @@ public interface Block extends ItemProvider, Content<Block> {
     /**
      * If the {@link BlockState} specified has a {@link BlockEntity} attached
      */
-    default boolean hasBlockEntity(BlockState state) {
+    default boolean hasBlockEntity() {
         return false;
     }
 
     /**
      * Creates a new {@link BlockEntity} for this block
      * <p>
-     * Make sure to return true {@link Block#hasBlockEntity(BlockState)} to use this
+     * Make sure to return true {@link Block#hasBlockEntity()} to use this
      */
     @Nullable
-    default BlockEntity createBlockEntity(WorldReader reader, BlockState state) {
+    default BlockEntity createBlockEntity(WorldReader reader) {
         return null;
     }
 
@@ -145,16 +145,8 @@ public interface Block extends ItemProvider, Content<Block> {
         return state;
     }
 
-    /**
-     * @deprecated <p> Use {@link Block#canReplace(WorldReader, Position, BlockState, Entity, Hand, ItemStack, Direction, Vec3d)} instead.
-     */
-    @Deprecated
-    default boolean canReplace(BlockState state) {
-        return getMaterial(state).isReplaceable();
-    }
-
     default boolean canReplace(WorldReader reader, Position pos, BlockState currentState, Entity player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
-        return canReplace(currentState);
+        return getMaterial(currentState).isReplaceable();
     }
 
     default boolean isAir(BlockState state) {

@@ -30,14 +30,6 @@ public interface BlockState extends PropertyContainer<BlockState> {
         return getBlock().getPistonInteraction(this);
     }
 
-    /**
-     * @deprecated <p> Use {@link BlockState#canReplace(WorldReader, Position, Entity, Hand, ItemStack, Direction, Vec3d)} instead.
-     */
-    @Deprecated
-    default boolean canReplace() {
-        return getBlock().canReplace(this);
-    }
-
     default boolean canReplace(WorldReader reader, Position pos, Entity player, Hand hand, ItemStack stack, Direction side, Vec3d hitPos) {
         return getBlock().canReplace(reader, pos, this, player, hand, stack, side, hitPos);
     }

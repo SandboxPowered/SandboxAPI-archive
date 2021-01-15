@@ -88,7 +88,7 @@ public class BaseBlock implements Block {
     public <X> Mono<X> getComponent(WorldReader world, Position position, BlockState state, Component<X> component, @Nullable Direction side) {
         if (this instanceof FluidLoggable && component == Components.FLUID_COMPONENT) {
             return Mono.of(new FluidLoggingContainer((FluidLoggable) this, world, position, state, side)).cast();
-        } else if (hasBlockEntity(state)) {
+        } else if (hasBlockEntity()) {
             BlockEntity entity = world.getBlockEntity(position);
             if (entity != null)
                 return entity.getComponent(component, side);
