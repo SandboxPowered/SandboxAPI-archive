@@ -31,17 +31,17 @@ import org.sandboxpowered.eventhandler.EventHandler;
 
 import java.util.function.Supplier;
 
+/**
+ * Everything which used this service should transition to using {@link org.sandboxpowered.api.inject.FactoryProvider}
+ */
 @Internal
+@Deprecated
 public interface InternalService {
 
     @NotNull
     static InternalService getInstance() {
         return SandboxServiceLoader.getOrLoadService(InternalService.class);
     }
-
-    Identity createIdentityFromString(String identity);
-
-    Identity createIdentityFromString(String name, String path);
 
     Text createLiteralText(String text);
 

@@ -64,6 +64,10 @@ public interface Item extends Content<Item> {
         return Mono.empty();
     }
 
+    default boolean showEnchantmentGlint(ItemStack stack) {
+        return stack.isEnchanted();
+    }
+
     class Settings {
         private int stackSize = 64;
         private int maxDamage;

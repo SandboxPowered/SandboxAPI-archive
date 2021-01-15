@@ -1,19 +1,26 @@
 package org.sandboxpowered.api.util;
 
+import org.sandboxpowered.api.inject.Sandbox;
 import org.sandboxpowered.internal.InternalService;
 
 public interface Identity {
     static Identity of(String namespace, String path) {
-        return InternalService.getInstance().createIdentityFromString(namespace, path);
+        return Sandbox.getFactoryProvider().get(Factory.class).create(namespace, path);
     }
 
     static Identity of(String identity) {
-        return InternalService.getInstance().createIdentityFromString(identity);
+        return Sandbox.getFactoryProvider().get(Factory.class).create(identity);
     }
 
     String getNamespace();
 
     String getPath();
+
+    interface Factory {
+        Identity create(String namespace, String path);
+
+        Identity create(String id);
+    }
 
     interface Variant extends Identity {
         static Variant of(Identity identity, String variant) {

@@ -85,6 +85,12 @@ public interface ItemStack {
 
     Set<Enchantment> getEnchantments();
 
+    boolean isEnchanted();
+
+    default boolean showEnchantmentGlint() {
+        return getItem().showEnchantmentGlint(this);
+    }
+
     boolean hasTag();
 
     @Nullable
@@ -125,7 +131,7 @@ public interface ItemStack {
 
     int getDamage();
 
-    void damage(int damage, World world, Entity entity);
+    void damage(int damage, Entity entity);
 
     void damage(int damage, World world, int entity);
 }
