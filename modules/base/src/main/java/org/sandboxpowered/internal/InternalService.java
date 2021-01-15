@@ -65,10 +65,6 @@ public interface InternalService {
 
     Vec3i createVec3i(int x, int y, int z);
 
-    Position createPosition(int x, int y, int z);
-
-    Position.Mutable createMutablePosition(int x, int y, int z);
-
     <T> Component<T> componentFunction(Class<T> c);
 
     FluidStack fluidStackFunction(Fluid fluid, int amount);
