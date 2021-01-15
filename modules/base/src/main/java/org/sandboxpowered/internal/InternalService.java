@@ -71,10 +71,6 @@ public interface InternalService {
 
     Vec2i createVec2i(int x, int y);
 
-    <X> EventHandler<X> createEventHandler();
-
-    ToolMaterial toolMaterial(String material);
-
     Tag<Block> getBlockTag(String string);
 
     Vec3d createVec3d(double x, double y, double z);

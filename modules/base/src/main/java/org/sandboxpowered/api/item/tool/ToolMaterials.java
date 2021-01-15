@@ -1,6 +1,6 @@
 package org.sandboxpowered.api.item.tool;
 
-import org.sandboxpowered.internal.InternalService;
+import org.sandboxpowered.api.inject.Sandbox;
 
 public final class ToolMaterials {
     public static final ToolMaterial WOOD = get("wood");
@@ -11,6 +11,10 @@ public final class ToolMaterials {
     public static final ToolMaterial NETHERITE = get("netherite");
 
     private static ToolMaterial get(String material) {
-        return InternalService.getInstance().toolMaterial(material);
+        return Sandbox.getFactoryProvider().get(Factory.class).get(material);
+    }
+
+    public interface Factory {
+        ToolMaterial get(String material);
     }
 }

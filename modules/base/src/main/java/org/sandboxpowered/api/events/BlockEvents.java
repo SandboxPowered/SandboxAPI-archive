@@ -12,9 +12,9 @@ import org.sandboxpowered.eventhandler.EventHandler;
 import org.sandboxpowered.internal.InternalService;
 
 public final class BlockEvents {
-    public static final EventHandler<BreakEvent> BREAK = InternalService.getInstance().createEventHandler();
-    public static final EventHandler<PlaceEvent> PLACE = InternalService.getInstance().createEventHandler();
-    public static final EventHandler<InteractEvent> INTERACT = InternalService.getInstance().createEventHandler();
+    public static final EventHandler<BreakEvent> BREAK = EventHandlerFactory.createEventHandler();
+    public static final EventHandler<PlaceEvent> PLACE = EventHandlerFactory.createEventHandler();
+    public static final EventHandler<InteractEvent> INTERACT = EventHandlerFactory.createEventHandler();
 
     public interface BreakEvent {
         void onEvent(World world, Position position, BlockState state, Entity player, ItemStack tool, Cancellable cancellable);

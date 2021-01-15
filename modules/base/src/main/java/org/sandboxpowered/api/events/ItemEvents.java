@@ -8,9 +8,9 @@ import org.sandboxpowered.eventhandler.EventHandler;
 import org.sandboxpowered.internal.InternalService;
 
 public final class ItemEvents {
-    public static final EventHandler<ArrowTypeEvent> GET_ARROW_TYPE = InternalService.getInstance().createEventHandler();
-    public static final EventHandler<DamageEvent> DAMAGE = InternalService.getInstance().createEventHandler();
-    public static final EventHandler<MiningSpeedEvent> MINING_SPEED = InternalService.getInstance().createEventHandler();
+    public static final EventHandler<ArrowTypeEvent> GET_ARROW_TYPE = EventHandlerFactory.createEventHandler();
+    public static final EventHandler<DamageEvent> DAMAGE = EventHandlerFactory.createEventHandler();
+    public static final EventHandler<MiningSpeedEvent> MINING_SPEED = EventHandlerFactory.createEventHandler();
 
     public interface MiningSpeedEvent {
         float onEvent(World world, Entity player, ItemStack stack, BlockState state, float speed);
