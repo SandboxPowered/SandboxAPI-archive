@@ -39,7 +39,7 @@ subprojects {
 
     version = rootProject.version
 
-    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_11
 
     repositories {
         maven { url 'https://nexus.sandboxpowered.org/repository/maven-public/' }
