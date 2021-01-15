@@ -71,17 +71,7 @@ public interface InternalService {
 
     Vec2i createVec2i(int x, int y);
 
-    Shape shape_cube(double minX, double minY, double minZ, double maxX, double maxY, double maxZ);
-
-    Shape shape_fullCube();
-
-    Shape shape_empty();
-
     <X> EventHandler<X> createEventHandler();
-
-    Box box_of(double minX, double minY, double minZ, double maxX, double maxY, double maxZ);
-
-    Box box_of(Position pos1, Position pos2);
 
     ToolMaterial toolMaterial(String material);
 

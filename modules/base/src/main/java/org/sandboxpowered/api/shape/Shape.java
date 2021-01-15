@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.shape;
 
+import org.sandboxpowered.api.inject.Sandbox;
 import org.sandboxpowered.api.util.Direction;
 import org.sandboxpowered.api.util.math.ShapeCombination;
 import org.sandboxpowered.api.util.math.Vec3d;
@@ -10,11 +11,11 @@ import java.util.List;
 public interface Shape {
 
     static Shape empty() {
-        return InternalService.getInstance().shape_empty();
+        return Sandbox.getFactoryProvider().get(Factory.class).emptyCube();
     }
 
     static Shape fullCube() {
-        return InternalService.getInstance().shape_fullCube();
+        return Sandbox.getFactoryProvider().get(Factory.class).fullCube();
     }
 
     static Shape cuboid(int minX, int minY, int minZ, int maxX, int maxY, int maxZ) {
@@ -22,11 +23,19 @@ public interface Shape {
     }
 
     static Shape cube(double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
-        return InternalService.getInstance().shape_cube(minX, minY, minZ, maxX, maxY, maxZ);
+        return Sandbox.getFactoryProvider().get(Factory.class).createCuboid(minX, minY, minZ, maxX, maxY, maxZ);
     }
 
     static Shape cube(Vec3d min, Vec3d max) {
         return cube(min.getX(), min.getY(), min.getZ(), max.getX(), max.getY(), max.getZ());
+    }
+
+    interface Factory {
+        Shape emptyCube();
+
+        Shape fullCube();
+
+        Shape createCuboid(double minX, double minY, double minZ, double maxX, double maxY, double maxZ);
     }
 
     Box getBoundingBox();
