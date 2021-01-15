@@ -12,7 +12,6 @@ import org.sandboxpowered.api.util.Mono;
 import org.sandboxpowered.api.util.nbt.CompoundTag;
 import org.sandboxpowered.api.util.nbt.ReadableCompoundTag;
 import org.sandboxpowered.api.world.World;
-import org.sandboxpowered.internal.InternalService;
 
 import java.util.Set;
 

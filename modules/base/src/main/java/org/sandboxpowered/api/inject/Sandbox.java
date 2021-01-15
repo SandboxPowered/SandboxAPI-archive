@@ -3,7 +3,6 @@ package org.sandboxpowered.api.inject;
 import com.google.inject.Inject;
 
 public final class Sandbox {
-
     @Inject
     private static Implementation implementation;
 

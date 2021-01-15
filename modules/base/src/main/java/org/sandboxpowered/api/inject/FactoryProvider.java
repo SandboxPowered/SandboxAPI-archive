@@ -3,7 +3,7 @@ package org.sandboxpowered.api.inject;
 public interface FactoryProvider {
     <T> T get(Class<T> factoryClass) throws FactoryNotFoundException;
 
-    public static class FactoryNotFoundException extends RuntimeException {
+    class FactoryNotFoundException extends RuntimeException {
         public FactoryNotFoundException(String message) {
             super(message);
         }

@@ -9,8 +9,6 @@ import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.fluid.Fluid;
 import org.sandboxpowered.api.fluid.FluidStack;
-import org.sandboxpowered.api.item.Item;
-import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.item.tool.ToolMaterial;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.server.Server;
