@@ -3,6 +3,7 @@ package org.sandboxpowered.internal;
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.ConfigSpec;
 import com.github.zafarkhaja.semver.Version;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.addon.AddonInfo;
 import org.sandboxpowered.api.addon.LoadingSide;
@@ -75,16 +76,16 @@ public class AddonSpec implements AddonInfo {
     public static AddonSpec from(Config config, URL path) {
         CONFIG_SPEC.correct(config);
         String id = config.get("id");
-        if (id.equals(""))
+        if (StringUtils.isEmpty(id))
             throw new IllegalArgumentException(String.format("Addon at path %s does not define an ID!", path.toString()));
         String verString = config.get("version");
-        if (verString.equals(""))
+        if (StringUtils.isEmpty(verString))
             throw new IllegalArgumentException(String.format("Addon %s does not define a version!", id));
         Version version = Version.valueOf(verString);
         String title = config.get("title");
         String description = config.get("description");
         String mainClass = config.get("entrypoint");
-        if (mainClass.equals(""))
+        if (StringUtils.isEmpty(mainClass))
             throw new IllegalArgumentException(String.format("Addon %s does not define an entrypoint!", id));
         List<String> authors = config.get("authors");
         String url = config.get("url");
