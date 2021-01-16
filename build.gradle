@@ -3,6 +3,11 @@ plugins {
     id 'maven-publish'
     id 'me.qoomon.git-versioning' version '3.0.0'
 }
+
+if(!JavaVersion.current().java11Compatible) {
+    throw new RuntimeException("You must use Java 11 or above to compile sandbox")
+}
+
 def ENV = System.getenv()
 
 def releasesRepoUrl = "https://nexus.sandboxpowered.org/repository/maven-releases/"
@@ -39,7 +44,11 @@ subprojects {
 
     version = rootProject.version
 
-    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_11
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(11))
+        }
+    }
 
     repositories {
         maven { url 'https://nexus.sandboxpowered.org/repository/maven-public/' }
