@@ -5,7 +5,6 @@ import org.sandboxpowered.api.util.math.Vec3d;
 import org.sandboxpowered.api.world.World;
 import org.sandboxpowered.api.world.WorldReader;
 import org.sandboxpowered.eventhandler.EventHandler;
-import org.sandboxpowered.internal.InternalService;
 
 import java.util.List;
 

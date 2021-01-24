@@ -1,7 +1,5 @@
 package org.sandboxpowered.api.world;
 
-import org.jetbrains.annotations.Nullable;
-import org.sandboxpowered.api.block.entity.BlockEntity;
 import org.sandboxpowered.api.ecs.ComponentMapper;
 import org.sandboxpowered.api.ecs.EntityBlueprint;
 import org.sandboxpowered.api.ecs.component.EntityComponent;
@@ -13,8 +11,7 @@ import org.sandboxpowered.api.util.math.Position;
 public interface WorldReader {
     BlockState getBlockState(Position position);
 
-    @Nullable
-    BlockEntity getBlockEntity(Position position);
+    int getBlockEntity(Position position);
 
     FluidState getFluidState(Position position);
 

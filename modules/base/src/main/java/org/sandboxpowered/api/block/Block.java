@@ -1,11 +1,11 @@
 package org.sandboxpowered.api.block;
 
 import org.jetbrains.annotations.Nullable;
-import org.sandboxpowered.api.block.entity.BlockEntity;
 import org.sandboxpowered.api.client.GraphicsMode;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.ecs.Entity;
+import org.sandboxpowered.api.ecs.EntityBlueprint;
 import org.sandboxpowered.api.entity.player.Hand;
 import org.sandboxpowered.api.fluid.Fluids;
 import org.sandboxpowered.api.item.Item;
@@ -121,19 +121,19 @@ public interface Block extends ItemProvider, Content<Block> {
     }
 
     /**
-     * If the {@link BlockState} specified has a {@link BlockEntity} attached
+     * If the block has a block entity attached
      */
     default boolean hasBlockEntity() {
         return false;
     }
 
     /**
-     * Creates a new {@link BlockEntity} for this block
+     * Creates a blueprint used for all block entities belonging to this block
      * <p>
      * Make sure to return true {@link Block#hasBlockEntity()} to use this
      */
     @Nullable
-    default BlockEntity createBlockEntity(WorldReader reader) {
+    default EntityBlueprint createBlockEntityBlueprint(WorldReader reader) {
         return null;
     }
 

@@ -1,7 +1,6 @@
 package org.sandboxpowered.api.block;
 
 import org.jetbrains.annotations.Nullable;
-import org.sandboxpowered.api.block.entity.BlockEntity;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.component.Components;
 import org.sandboxpowered.api.component.fluid.FluidLoggingContainer;
@@ -89,9 +88,9 @@ public class BaseBlock implements Block {
         if (this instanceof FluidLoggable && component == Components.FLUID_COMPONENT) {
             return Mono.of(new FluidLoggingContainer((FluidLoggable) this, world, position, state, side)).cast();
         } else if (hasBlockEntity()) {
-            BlockEntity entity = world.getBlockEntity(position);
-            if (entity != null)
-                return entity.getComponent(component, side);
+//            BlockEntity entity = world.getBlockEntity(position);
+//            if (entity != null)
+//                return entity.getComponent(component, side);
         }
         return Mono.empty();
     }

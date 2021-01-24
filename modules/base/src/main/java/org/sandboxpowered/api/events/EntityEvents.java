@@ -5,7 +5,6 @@ import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.util.math.Position;
 import org.sandboxpowered.api.world.World;
 import org.sandboxpowered.eventhandler.EventHandler;
-import org.sandboxpowered.internal.InternalService;
 
 import java.util.List;
 

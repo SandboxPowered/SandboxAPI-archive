@@ -2,7 +2,7 @@ package org.sandboxpowered.api.ecs;
 
 import org.sandboxpowered.api.ecs.component.EntityComponent;
 import org.sandboxpowered.api.inject.Sandbox;
-import org.sandboxpowered.api.world.World;
+import org.sandboxpowered.api.world.WorldReader;
 
 public interface EntityBlueprint {
 
@@ -29,6 +29,6 @@ public interface EntityBlueprint {
 
         Builder removeAll(Class<? extends EntityComponent>... types);
 
-        EntityBlueprint build(World world);
+        EntityBlueprint build(WorldReader reader);
     }
 }

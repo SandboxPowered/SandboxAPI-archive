@@ -5,7 +5,6 @@ import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.world.World;
 import org.sandboxpowered.eventhandler.EventHandler;
-import org.sandboxpowered.internal.InternalService;
 
 public final class ItemEvents {
     public static final EventHandler<ArrowTypeEvent> GET_ARROW_TYPE = EventHandlerFactory.createEventHandler();

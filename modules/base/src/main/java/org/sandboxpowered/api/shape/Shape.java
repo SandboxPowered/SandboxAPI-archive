@@ -4,7 +4,6 @@ import org.sandboxpowered.api.inject.Sandbox;
 import org.sandboxpowered.api.util.Direction;
 import org.sandboxpowered.api.util.math.ShapeCombination;
 import org.sandboxpowered.api.util.math.Vec3d;
-import org.sandboxpowered.internal.InternalService;
 
 import java.util.List;
 
@@ -30,14 +29,6 @@ public interface Shape {
         return cube(min.getX(), min.getY(), min.getZ(), max.getX(), max.getY(), max.getZ());
     }
 
-    interface Factory {
-        Shape emptyCube();
-
-        Shape fullCube();
-
-        Shape createCuboid(double minX, double minY, double minZ, double maxX, double maxY, double maxZ);
-    }
-
     Box getBoundingBox();
 
     boolean isEmpty();
@@ -57,4 +48,12 @@ public interface Shape {
     }
 
     Shape combine(Shape shape, ShapeCombination function);
+
+    interface Factory {
+        Shape emptyCube();
+
+        Shape fullCube();
+
+        Shape createCuboid(double minX, double minY, double minZ, double maxX, double maxY, double maxZ);
+    }
 }
