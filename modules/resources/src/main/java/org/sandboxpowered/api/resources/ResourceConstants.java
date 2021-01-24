@@ -2,7 +2,7 @@ package org.sandboxpowered.api.resources;
 
 import org.sandboxpowered.api.block.BaseBlock;
 import org.sandboxpowered.api.block.Block;
-import org.sandboxpowered.api.block.Material;
+import org.sandboxpowered.api.block.Materials;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.item.BaseItem;
 import org.sandboxpowered.api.item.Item;
@@ -32,8 +32,8 @@ public final class ResourceConstants {
     public static ResourceType<Item> DUST = item("dust");
     public static ResourceType<Item> NUGGET = item("nugget");
     public static ResourceType<Item> GEM = item("gem");
-    public static ResourceType<Block> ORE = ResourceType.of("ore", m -> new BaseBlock(Block.Settings.builder(Material.STONE).build()), ItemStack::of);
-    public static ResourceType<Block> BLOCK = ResourceType.of("block", m -> new BaseBlock(Block.Settings.builder(Material.METAL).build()), ItemStack::of);
+    public static ResourceType<Block> ORE = ResourceType.of("ore", m -> new BaseBlock(Block.Settings.builder(Materials.STONE).build()), ItemStack::of);
+    public static ResourceType<Block> BLOCK = ResourceType.of("block", m -> new BaseBlock(Block.Settings.builder(Materials.METAL).build()), ItemStack::of);
 
     public static ResourceMaterial material(String name) {
         return ResourceMaterial.of(name);
