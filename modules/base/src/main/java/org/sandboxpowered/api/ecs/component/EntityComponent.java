@@ -9,4 +9,12 @@ package org.sandboxpowered.api.ecs.component;
  * @see PooledEntityComponent
  */
 public interface EntityComponent {
+    default boolean ableToApplyOn(Type type) {
+        return true;
+    }
+
+    enum Type {
+        ENTITY,
+        BLOCK_ENTITY
+    }
 }

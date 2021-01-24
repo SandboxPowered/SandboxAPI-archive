@@ -2,7 +2,7 @@ package org.sandboxpowered.api.ecs.component;
 
 import org.sandboxpowered.api.util.math.Vec3d;
 
-public class PositionComponent implements PooledEntityComponent {
+public class EntityPositionComponent implements PooledEntityComponent {
     public double x, y, z;
 
     public Vec3d asVec3d() {
@@ -13,6 +13,11 @@ public class PositionComponent implements PooledEntityComponent {
         x = vec.getX();
         y = vec.getY();
         z = vec.getZ();
+    }
+
+    @Override
+    public boolean ableToApplyOn(Type type) {
+        return type == Type.ENTITY;
     }
 
     @Override
