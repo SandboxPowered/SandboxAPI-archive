@@ -20,6 +20,18 @@ public abstract class AbstractProperty<T extends Comparable<T>> implements Prope
     }
 
     @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        } else if (!(object instanceof AbstractProperty)) {
+            return false;
+        } else {
+            AbstractProperty<?> property = (AbstractProperty<?>) object;
+            return this.type.equals(property.type) && this.name.equals(property.name);
+        }
+    }
+
+    @Override
     public int hashCode() {
         return 31 * this.type.hashCode() + this.name.hashCode();
     }
