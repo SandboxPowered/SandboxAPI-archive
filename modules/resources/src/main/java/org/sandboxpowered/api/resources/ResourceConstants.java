@@ -14,26 +14,26 @@ public final class ResourceConstants {
 
     private static final Function<ResourceMaterial, Item> ITEM_CREATOR = material -> new BaseItem(new Item.Settings());
 
-    public static ResourceMaterial CLAY = ResourceMaterial.of("clay");
-    public static ResourceMaterial WOOD = ResourceMaterial.of("wood");
-    public static ResourceMaterial COAL = ResourceMaterial.of("coal");
-    public static ResourceMaterial IRON = ResourceMaterial.of("iron");
-    public static ResourceMaterial GOLD = ResourceMaterial.of("gold");
-    public static ResourceMaterial LAPIS = ResourceMaterial.of("lapis");
-    public static ResourceMaterial REDSTONE = ResourceMaterial.of("redstone");
-    public static ResourceMaterial DIAMOND = ResourceMaterial.of("diamond");
-    public static ResourceMaterial EMERALD = ResourceMaterial.of("emerald");
-    public static ResourceMaterial OBSIDIAN = ResourceMaterial.of("obsidian");
-    public static ResourceMaterial QUARTZ = ResourceMaterial.of("quartz");
-    public static ResourceMaterial GLOWSTONE = ResourceMaterial.of("glowstone");
-    public static ResourceMaterial NETHERITE = ResourceMaterial.of("netherite");
+    public static final ResourceMaterial CLAY = ResourceMaterial.of("clay");
+    public static final ResourceMaterial WOOD = ResourceMaterial.of("wood");
+    public static final ResourceMaterial COAL = ResourceMaterial.of("coal");
+    public static final ResourceMaterial IRON = ResourceMaterial.of("iron");
+    public static final ResourceMaterial GOLD = ResourceMaterial.of("gold");
+    public static final ResourceMaterial LAPIS = ResourceMaterial.of("lapis");
+    public static final ResourceMaterial REDSTONE = ResourceMaterial.of("redstone");
+    public static final ResourceMaterial DIAMOND = ResourceMaterial.of("diamond");
+    public static final ResourceMaterial EMERALD = ResourceMaterial.of("emerald");
+    public static final ResourceMaterial OBSIDIAN = ResourceMaterial.of("obsidian");
+    public static final ResourceMaterial QUARTZ = ResourceMaterial.of("quartz");
+    public static final ResourceMaterial GLOWSTONE = ResourceMaterial.of("glowstone");
+    public static final ResourceMaterial NETHERITE = ResourceMaterial.of("netherite");
 
-    public static ResourceType<Item> INGOT = item("ingot");
-    public static ResourceType<Item> DUST = item("dust");
-    public static ResourceType<Item> NUGGET = item("nugget");
-    public static ResourceType<Item> GEM = item("gem");
-    public static ResourceType<Block> ORE = ResourceType.of("ore", m -> new BaseBlock(Block.Settings.builder(Materials.STONE).build()), ItemStack::of);
-    public static ResourceType<Block> BLOCK = ResourceType.of("block", m -> new BaseBlock(Block.Settings.builder(Materials.METAL).build()), ItemStack::of);
+    public static final ResourceType<Item> INGOT = item("ingot");
+    public static final ResourceType<Item> DUST = item("dust");
+    public static final ResourceType<Item> NUGGET = item("nugget");
+    public static final ResourceType<Item> GEM = item("gem");
+    public static final ResourceType<Block> ORE = ResourceType.of("ore", m -> new BaseBlock(Block.Settings.builder(Materials.STONE).build()), ItemStack::of);
+    public static final ResourceType<Block> BLOCK = ResourceType.of("block", m -> new BaseBlock(Block.Settings.builder(Materials.METAL).build()), ItemStack::of);
 
     public static ResourceMaterial material(String name) {
         return ResourceMaterial.of(name);

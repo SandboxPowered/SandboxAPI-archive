@@ -15,7 +15,7 @@ public final class ResourceMaterial {
     }
 
     public static ResourceMaterial of(String id) {
-        if (!id.toLowerCase().equals(id)) {
+        if (!id.equalsIgnoreCase(id)) {
             throw new IllegalArgumentException(String.format("Material id must be lowercase got '%s'", id));
         }
         return MATERIALS.computeIfAbsent(id, ResourceMaterial::new);

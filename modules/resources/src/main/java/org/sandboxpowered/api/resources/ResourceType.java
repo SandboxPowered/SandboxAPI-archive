@@ -22,7 +22,7 @@ public final class ResourceType<C extends Content<C>> {
     }
 
     public static <C extends Content<C>> ResourceType<C> of(String id, Function<ResourceMaterial, C> defaultCreator, Function<C, ItemStack> stackFunction) {
-        if (!id.toLowerCase().equals(id)) {
+        if (!id.equalsIgnoreCase(id)) {
             throw new IllegalArgumentException(String.format("Type id must be lowercase got '%s'", id));
         }
         return (ResourceType<C>) TYPES.computeIfAbsent(id, s -> new ResourceType<>(s, defaultCreator, stackFunction));
