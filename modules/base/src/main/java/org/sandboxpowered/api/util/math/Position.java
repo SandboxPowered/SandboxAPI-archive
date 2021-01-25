@@ -122,7 +122,7 @@ public interface Position extends Vec3i {
         }
 
         static Mutable create(int x, int y, int z) {
-            return Sandbox.getFactoryProvider().get(Factory.class).mutable(x, y, z);
+            return Sandbox.getFactoryProvider().get(Position.Factory.class).mutable(x, y, z);
         }
 
         static Mutable create(Vec3i vec3i) {

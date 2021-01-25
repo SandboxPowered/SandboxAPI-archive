@@ -2,7 +2,6 @@ package org.sandboxpowered.internal;
 
 import org.jetbrains.annotations.NotNull;
 import org.sandboxpowered.api.block.Block;
-import org.sandboxpowered.api.block.Material;
 import org.sandboxpowered.api.client.Client;
 import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
@@ -14,18 +13,14 @@ import org.sandboxpowered.api.state.property.Property;
 import org.sandboxpowered.api.tags.Tag;
 import org.sandboxpowered.api.util.Identity;
 import org.sandboxpowered.api.util.annotation.Internal;
-import org.sandboxpowered.api.util.math.Vec2i;
-import org.sandboxpowered.api.util.math.Vec3d;
-import org.sandboxpowered.api.util.math.Vec3i;
-import org.sandboxpowered.api.util.nbt.CompoundTag;
 import org.sandboxpowered.api.util.nbt.ReadableCompoundTag;
 import org.sandboxpowered.api.util.text.Text;
 
 /**
- * Everything which used this service should transition to using {@link org.sandboxpowered.api.inject.FactoryProvider}
+ * @deprecated Everything which used this service should transition to using {@link org.sandboxpowered.api.inject.FactoryProvider}
  */
 @Internal
-@Deprecated
+@Deprecated(forRemoval = true)
 public interface InternalService {
 
     @NotNull
@@ -37,17 +32,11 @@ public interface InternalService {
 
     Text createTranslatedText(String translation);
 
-    Material getMaterial(String material);
-
     <T extends Content<T>> Registry<T> registryFunction(Class<T> c);
-
-    CompoundTag createCompoundTag();
 
     <T extends Comparable<T>> Property<T> getProperty(String property);
 
     Server serverInstance();
-
-    Vec3i createVec3i(int x, int y, int z);
 
     <T> Component<T> componentFunction(Class<T> c);
 
@@ -59,9 +48,5 @@ public interface InternalService {
 
     Client clientInstance();
 
-    Vec2i createVec2i(int x, int y);
-
     Tag<Block> getBlockTag(String string);
-
-    Vec3d createVec3d(double x, double y, double z);
 }

@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.resources;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -15,7 +16,7 @@ public final class ResourceMaterial {
     }
 
     public static ResourceMaterial of(String id) {
-        if (!id.equalsIgnoreCase(id)) {
+        if (!StringUtils.isAllLowerCase(id)) {
             throw new IllegalArgumentException(String.format("Material id must be lowercase got '%s'", id));
         }
         return MATERIALS.computeIfAbsent(id, ResourceMaterial::new);

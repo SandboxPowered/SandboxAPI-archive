@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.resources;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.item.ItemStack;
@@ -22,14 +23,14 @@ public final class ResourceType<C extends Content<C>> {
     }
 
     public static <C extends Content<C>> ResourceType<C> of(String id, Function<ResourceMaterial, C> defaultCreator, Function<C, ItemStack> stackFunction) {
-        if (!id.equalsIgnoreCase(id)) {
+        if (!StringUtils.isAllLowerCase(id)) {
             throw new IllegalArgumentException(String.format("Type id must be lowercase got '%s'", id));
         }
         return (ResourceType<C>) TYPES.computeIfAbsent(id, s -> new ResourceType<>(s, defaultCreator, stackFunction));
     }
 
-    public static ResourceType<?> find(String id) {
-        return TYPES.get(id);
+    public static <X extends Content<X>> ResourceType<X> find(String id) {
+        return (ResourceType<X>) TYPES.get(id);
     }
 
     @Override

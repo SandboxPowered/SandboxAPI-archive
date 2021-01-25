@@ -1,10 +1,10 @@
 package org.sandboxpowered.api.util.math;
 
-import org.sandboxpowered.internal.InternalService;
+import org.sandboxpowered.api.inject.Sandbox;
 
 public interface Vec3i {
     static Vec3i create(int x, int y, int z) {
-        return InternalService.getInstance().createVec3i(x, y, z);
+        return Sandbox.getFactoryProvider().get(Factory.class).create(x, y, z);
     }
 
     int getX();
@@ -23,5 +23,9 @@ public interface Vec3i {
 
     default Vec3i sub(Vec3i vec) {
         return sub(vec.getX(), vec.getY(), vec.getZ());
+    }
+
+    interface Factory {
+        Vec3i create(int x, int y, int z);
     }
 }
