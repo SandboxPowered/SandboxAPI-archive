@@ -4,7 +4,7 @@ import org.sandboxpowered.api.state.property.Property;
 import org.sandboxpowered.api.util.*;
 import org.sandboxpowered.internal.InternalService;
 
-public class Properties {
+public final class Properties {
     public static final Property<Boolean> ATTACHED = getProperty("attached");
     public static final Property<Boolean> BOTTOM = getProperty("bottom");
     public static final Property<Boolean> CONDITIONAL = getProperty("conditional");
@@ -77,6 +77,9 @@ public class Properties {
     public static final Property<Hinge> HINGE = getProperty("hinge");
     public static final Property<BedHalf> BED_HALF = getProperty("bed_half");
     public static final Property<StairShape> STAIR_SHAPE = getProperty("stair_shape");
+
+    private Properties() {
+    }
 
     private static <X extends Comparable<X>> Property<X> getProperty(String s) {
         Property<X> property = InternalService.getInstance().getProperty(s);

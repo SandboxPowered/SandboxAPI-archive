@@ -8,7 +8,10 @@ import org.sandboxpowered.api.util.annotation.Internal;
 import java.util.*;
 
 @Internal
-public class SandboxServiceLoader {
+public final class SandboxServiceLoader {
+    private SandboxServiceLoader() {
+    }
+
     private static final Map<Class<?>, Object> SERVICE_MAP = new HashMap<>();
 
     @NotNull

@@ -26,7 +26,7 @@ public interface Position extends Vec3i {
     }
 
     static Stream<Position> getAllWithin(int x1, int y1, int z1, int x2, int y2, int z2) {
-        return StreamSupport.stream(new Spliterators.AbstractSpliterator<Position>((x2 - x1 + 1) * (y2 - y1 + 1) * (z2 - z1 + 1), Spliterator.SIZED | Spliterator.NONNULL) {
+        return StreamSupport.stream(new Spliterators.AbstractSpliterator<>((long) (x2 - x1 + 1) * (y2 - y1 + 1) * (z2 - z1 + 1), Spliterator.SIZED | Spliterator.NONNULL) {
             final PositionIterator iterator = new PositionIterator(x1, y1, z1, x2, y2, z2);
             final Mutable mutable = Mutable.create();
 

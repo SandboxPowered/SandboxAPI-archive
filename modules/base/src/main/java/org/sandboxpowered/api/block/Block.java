@@ -251,7 +251,11 @@ public interface Block extends ItemProvider, Content<Block> {
     //TODO: mining tool/level, map color, collision, opacity, sound group, random tick, drops, dynamic bounds
     class Settings {
         private final Material material;
-        private final float hardness, resistance, slipperiness, velocity, jumpVelocity;
+        private final float hardness;
+        private final float resistance;
+        private final float slipperiness;
+        private final float velocity;
+        private final float jumpVelocity;
         private final int luminance;
         private final boolean randomTicks;
         private final boolean giveItemBlock;
@@ -329,8 +333,12 @@ public interface Block extends ItemProvider, Content<Block> {
 
         public static class Builder {
             private final Material material;
-            private float hardness, resistance, slipperiness = 0.6F, velocity = 1.0F, jumpVelocity = 1.0F;
-            private int luminance, opacity;
+            private float hardness;
+            private float resistance;
+            private float slipperiness = 0.6F;
+            private float velocity = 1.0F;
+            private float jumpVelocity = 1.0F;
+            private int luminance;
             private boolean randomTicks;
             private boolean giveItemBlock = true;
 

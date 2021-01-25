@@ -3,7 +3,7 @@ package org.sandboxpowered.api.block;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.util.Identity;
 
-public class Blocks {
+public final class Blocks {
     public static final Registry.Entry<Block> AIR = get("air");
     public static final Registry.Entry<Block> STONE = get("stone");
     public static final Registry.Entry<Block> GRANITE = get("granite");
@@ -684,6 +684,9 @@ public class Blocks {
     public static final Registry.Entry<Block> BEEHIVE = get("beehive");
     public static final Registry.Entry<Block> HONEY_BLOCK = get("honey_block");
     public static final Registry.Entry<Block> HONEYCOMB_BLOCK = get("honeycomb_block");
+
+    private Blocks() {
+    }
 
     private static Registry.Entry<Block> get(String name) {
         return Block.REGISTRY.get(Identity.of("minecraft", name));

@@ -148,7 +148,12 @@ public class AddonSpec implements AddonInfo {
 
     @Override
     public PlatformSupport getPlatformSupport(Identity platform) {
-        return platforms.containsKey(platform.toString()) ? platforms.get(platform.toString()) ? PlatformSupport.YES : PlatformSupport.NO : PlatformSupport.MAYBE;
+        if (platforms.containsKey(platform.toString())) {
+            if (platforms.get(platform.toString())) return PlatformSupport.YES;
+            return PlatformSupport.NO;
+        } else {
+            return PlatformSupport.MAYBE;
+        }
     }
 
     public String getMainClass() {

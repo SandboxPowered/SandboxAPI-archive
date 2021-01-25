@@ -9,7 +9,10 @@ import java.util.*;
  * Internal class
  */
 @Internal
-public class ClassUtil {
+public final class ClassUtil {
+    private ClassUtil() {
+    }
+
     private static final Map<Class<?>, Map<Class<? extends Annotation>, Boolean>> annotationCache = new LinkedHashMap<>();
     private static final Map<Class<?>, List<Class<?>>> superCache = new HashMap<>();
 
@@ -26,19 +29,16 @@ public class ClassUtil {
 
     public static List<Class<?>> lookupAllSuper(Class<?> eventClass) {
         synchronized (superCache) {
-            List<Class<?>> eventTypes = superCache.get(eventClass);
-            if (eventTypes == null) {
-                eventTypes = new ArrayList<>();
-                Class<?> clazz = eventClass;
-                while (clazz != null) {
-                    eventTypes.add(clazz);
-                    clazz = clazz.getSuperclass();
-                    if (clazz == Object.class)
-                        clazz = null;
+            return superCache.computeIfAbsent(eventClass, ec -> {
+                List<Class<?>> types = new ArrayList<>();
+                while (ec != null) {
+                    types.add(ec);
+                    ec = ec.getSuperclass();
+                    if (ec == Object.class)
+                        ec = null;
                 }
-                superCache.put(eventClass, eventTypes);
-            }
-            return eventTypes;
+                return types;
+            });
         }
     }
 }

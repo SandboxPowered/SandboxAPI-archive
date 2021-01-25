@@ -6,8 +6,10 @@ import org.sandboxpowered.api.util.annotation.Alpha;
 
 @Alpha
 public abstract class BaseEnchantment implements Enchantment {
-    private final int minLevel, maxLevel;
-    private final boolean curse, treasure;
+    private final int minLevel;
+    private final int maxLevel;
+    private final boolean curse;
+    private final boolean treasure;
     private final Rarity rarity;
     private Identity identity;
 

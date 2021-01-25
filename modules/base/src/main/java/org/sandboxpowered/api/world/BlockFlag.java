@@ -7,7 +7,7 @@ public enum BlockFlag {
     RERENDER_MAIN_THREAD,
     NO_OBSERVER;
 
-    public static final BlockFlag[] DEFAULT = new BlockFlag[]{
+    protected static final BlockFlag[] DEFAULT = new BlockFlag[]{
             NOTIFY_NEIGHBORS,
             SEND_TO_CLIENT
     };

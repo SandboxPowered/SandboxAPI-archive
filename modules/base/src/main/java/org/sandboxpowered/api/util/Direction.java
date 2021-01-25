@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.util.math.Vec3i;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -17,25 +18,25 @@ public enum Direction {
     SOUTH(3, 2, 0, "south", AxisDirection.POSITIVE, Axis.Z, Vec3i.create(0, 0, 1)),
     WEST(4, 5, 1, "west", AxisDirection.NEGATIVE, Axis.X, Vec3i.create(-1, 0, 0)),
     EAST(5, 4, 3, "east", AxisDirection.POSITIVE, Axis.X, Vec3i.create(1, 0, 0));
-    public static final Direction[] ALL = values();
-    public static final Map<String, Direction> NAME_MAP = ImmutableMap.copyOf(Arrays.stream(ALL).collect(Collectors.toMap(Direction::getName, (dir) -> dir)));
-    public static final Direction[] ID_TO_DIRECTION = Arrays.stream(ALL).sorted(Comparator.comparingInt((dir) -> dir.id)).toArray(Direction[]::new);
-    public static final Direction[] HORIZONTAL = Arrays.stream(ALL).filter((dir) -> dir.getAxis().isHorizontal()).sorted(Comparator.comparingInt((dir) -> dir.horizontalId)).toArray(Direction[]::new);
+    protected static final Direction[] ALL = values();
+    protected static final Map<String, Direction> NAME_MAP = ImmutableMap.copyOf(Arrays.stream(ALL).collect(Collectors.toMap(Direction::getName, Function.identity())));
+    protected static final Direction[] ID_TO_DIRECTION = Arrays.stream(ALL).sorted(Comparator.comparingInt(dir -> dir.id)).toArray(Direction[]::new);
+    protected static final Direction[] HORIZONTAL = Arrays.stream(ALL).filter(dir -> dir.getAxis().isHorizontal()).sorted(Comparator.comparingInt(dir -> dir.horizontalId)).toArray(Direction[]::new);
     private final int id;
     private final int invertedId;
     private final int horizontalId;
     private final String name;
     private final Axis axis;
-    private final AxisDirection direction;
+    private final AxisDirection axisDirection;
     private final Vec3i vector;
 
-    Direction(int id, int invertedId, int horizontalId, String name, AxisDirection direction, Axis axis, Vec3i vector) {
+    Direction(int id, int invertedId, int horizontalId, String name, AxisDirection axisDirection, Axis axis, Vec3i vector) {
         this.id = id;
         this.invertedId = invertedId;
         this.horizontalId = horizontalId;
         this.name = name;
         this.axis = axis;
-        this.direction = direction;
+        this.axisDirection = axisDirection;
         this.vector = vector;
     }
 
@@ -89,7 +90,7 @@ public enum Direction {
 
     public static Direction get(AxisDirection direction, Axis axis) {
         for (Direction dir : ALL) {
-            if (dir.getDirection() == direction && dir.getAxis() == axis) {
+            if (dir.getAxisDirection() == direction && dir.getAxis() == axis) {
                 return dir;
             }
         }
@@ -105,8 +106,8 @@ public enum Direction {
         return this.horizontalId;
     }
 
-    public AxisDirection getDirection() {
-        return this.direction;
+    public AxisDirection getAxisDirection() {
+        return this.axisDirection;
     }
 
     public Direction getOppositeDirection() {
@@ -154,14 +155,14 @@ public enum Direction {
         switch (this) {
             case NORTH:
                 return DOWN;
-            default:
-                throw new IllegalStateException("Unable to get X-rotated facing of " + this);
             case SOUTH:
                 return UP;
             case UP:
                 return NORTH;
             case DOWN:
                 return SOUTH;
+            default:
+                throw new IllegalStateException("Unable to get X-rotated facing of " + this);
         }
     }
 
@@ -169,14 +170,14 @@ public enum Direction {
         switch (this) {
             case EAST:
                 return DOWN;
-            default:
-                throw new IllegalStateException("Unable to get Z-rotated facing of " + this);
             case WEST:
                 return UP;
             case UP:
                 return EAST;
             case DOWN:
                 return WEST;
+            default:
+                throw new IllegalStateException("Unable to get Z-rotated facing of " + this);
         }
     }
 
@@ -196,15 +197,15 @@ public enum Direction {
     }
 
     public int getOffsetX() {
-        return this.axis == Axis.X ? this.direction.offset() : 0;
+        return this.axis == Axis.X ? this.axisDirection.offset() : 0;
     }
 
     public int getOffsetY() {
-        return this.axis == Axis.Y ? this.direction.offset() : 0;
+        return this.axis == Axis.Y ? this.axisDirection.offset() : 0;
     }
 
     public int getOffsetZ() {
-        return this.axis == Axis.Z ? this.direction.offset() : 0;
+        return this.axis == Axis.Z ? this.axisDirection.offset() : 0;
     }
 
     public String getName() {
@@ -219,6 +220,7 @@ public enum Direction {
         return (float) ((this.horizontalId & 3) * 90);
     }
 
+    @Override
     public String toString() {
         return this.name;
     }
@@ -265,6 +267,7 @@ public enum Direction {
             return this.offset;
         }
 
+        @Override
         public String toString() {
             return this.description;
         }
@@ -310,7 +313,7 @@ public enum Direction {
                 case Y:
                     return Type.VERTICAL;
                 default:
-                    throw new Error(String.format("Unknown Axis %s!", this.getName()));
+                    throw new UnknownError(String.format("Unknown Axis %s!", this.getName()));
             }
         }
     }

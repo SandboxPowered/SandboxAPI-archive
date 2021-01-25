@@ -3,7 +3,9 @@ package org.sandboxpowered.api.ecs.component;
 import org.sandboxpowered.api.util.math.Position;
 
 public class BlockEntityPositionComponent implements PooledEntityComponent {
-    public int x, y, z;
+    private int x;
+    private int y;
+    private int z;
 
     public Position asPos() {
         return Position.create(x, y, z);
@@ -13,6 +15,30 @@ public class BlockEntityPositionComponent implements PooledEntityComponent {
         x = vec.getX();
         y = vec.getY();
         z = vec.getZ();
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
     }
 
     @Override

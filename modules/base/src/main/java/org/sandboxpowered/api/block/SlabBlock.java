@@ -37,7 +37,12 @@ public class SlabBlock extends BaseBlock implements FluidLoggable {
     @Override
     public Shape getShape(WorldReader reader, Position position, BlockState state) {
         SlabType type = state.get(Properties.SLAB_TYPE);
-        return type == SlabType.BOTTOM ? BOTTOM_SHAPE : type == SlabType.TOP ? TOP_SHAPE : super.getShape(reader, position, state);
+        if (type == SlabType.BOTTOM) {
+            return BOTTOM_SHAPE;
+        } else {
+            if (type == SlabType.TOP) return TOP_SHAPE;
+            return super.getShape(reader, position, state);
+        }
     }
 
     @Override

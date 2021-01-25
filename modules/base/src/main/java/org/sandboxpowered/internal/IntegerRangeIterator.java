@@ -3,14 +3,18 @@ package org.sandboxpowered.internal;
 import org.sandboxpowered.api.util.annotation.Internal;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 @Internal
 public class IntegerRangeIterator implements Iterator<Integer> {
-    private final int start, end;
+    private final int end;
     private int current;
 
+    public IntegerRangeIterator(int end) {
+        this(0, end);
+    }
+
     public IntegerRangeIterator(int start, int end) {
-        this.start = start;
         this.current = start;
         this.end = end;
     }
@@ -21,7 +25,9 @@ public class IntegerRangeIterator implements Iterator<Integer> {
     }
 
     @Override
-    public Integer next() {
+    public Integer next() throws NoSuchElementException {
+        if(!hasNext())
+            throw new NoSuchElementException();
         return current++;
     }
 }

@@ -17,9 +17,8 @@ public interface FluidLoggable {
     }
 
     default FluidStack getFluid(WorldReader world, Position position, BlockState state, @Nullable Direction direction) {
-        if (state.contains(Properties.WATERLOGGED)) {
-            if (state.get(Properties.WATERLOGGED)) return FluidStack.of(Fluids.WATER.get());
-        }
+        if (state.contains(Properties.WATERLOGGED) && state.get(Properties.WATERLOGGED))
+            return FluidStack.of(Fluids.WATER.get());
         return FluidStack.empty();
     }
 

@@ -13,7 +13,12 @@ public abstract class BaseFluid implements Fluid {
     private Identity identity;
 
     protected static int getBlockStateLevel(FluidState state) {
-        return state.isStill() ? 0 : 8 - Math.min(state.get(Properties.FLUID_LEVEL), 8) + (state.get(Properties.FALLING) ? 8 : 0);
+        if (state.isStill()) {
+            return 0;
+        } else {
+            if (state.get(Properties.FALLING)) return 8 - Math.min(state.get(Properties.FLUID_LEVEL), 8) + 8;
+            return 8 - Math.min(state.get(Properties.FLUID_LEVEL), 8);
+        }
     }
 
     @Override
