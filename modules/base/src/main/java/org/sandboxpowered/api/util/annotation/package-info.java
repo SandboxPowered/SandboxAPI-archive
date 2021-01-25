@@ -1,0 +1,5 @@
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+package org.sandboxpowered.api.util.annotation;
+
+import javax.annotation.ParametersAreNonnullByDefault;
