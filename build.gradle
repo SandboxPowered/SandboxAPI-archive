@@ -28,6 +28,10 @@ gitVersioning.apply {
         pattern = 'feature/(?<feature>.+)'
         versionFormat = '${feature}-SNAPSHOT'
     }
+    branch {
+        pattern = 'rework'
+        versionFormat = 'rework-SNAPSHOT'
+    }
     tag {
         pattern = 'release/(?<tagVersion>[0-9].*)'
         versionFormat = '${tagVersion}'
@@ -46,7 +50,7 @@ archivesBaseName = 'platform'
 subprojects {
     apply plugin: 'java-library'
     apply plugin: 'maven-publish'
-    
+
     java {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(11))
