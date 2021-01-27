@@ -39,12 +39,6 @@ gitVersioning.apply {
 
 allprojects {
     group = project.maven_group
-
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(11))
-        }
-    }
 }
 
 archivesBaseName = 'platform'
@@ -52,6 +46,12 @@ archivesBaseName = 'platform'
 subprojects {
     apply plugin: 'java-library'
     apply plugin: 'maven-publish'
+    
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(11))
+        }
+    }
 
     version = rootProject.version
 
