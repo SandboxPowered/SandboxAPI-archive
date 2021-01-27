@@ -1,12 +1,11 @@
 package org.sandboxpowered.api.block;
 
 import org.jetbrains.annotations.Nullable;
+import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.client.GraphicsMode;
-import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.ecs.Entity;
 import org.sandboxpowered.api.ecs.EntityBlueprint;
-import org.sandboxpowered.api.entity.player.Hand;
 import org.sandboxpowered.api.fluid.Fluids;
 import org.sandboxpowered.api.item.Item;
 import org.sandboxpowered.api.item.ItemProvider;
@@ -48,11 +47,11 @@ public interface Block extends ItemProvider, Content<Block> {
     @Override
     Optional<Item> asItem();
 
-    default <X> Mono<X> getComponent(WorldReader world, Position position, BlockState state, Component<X> component) {
-        return getComponent(world, position, state, component, null);
+    default <X> Mono<X> getCapability(WorldReader world, Position position, BlockState state, Capability<X> capability) {
+        return getCapability(world, position, state, capability, null);
     }
 
-    default <X> Mono<X> getComponent(WorldReader world, Position position, BlockState state, Component<X> component, @Nullable Direction side) {
+    default <X> Mono<X> getCapability(WorldReader world, Position position, BlockState state, Capability<X> capability, @Nullable Direction side) {
         return Mono.empty();
     }
 
@@ -341,15 +340,15 @@ public interface Block extends ItemProvider, Content<Block> {
 
             private Builder(Settings settings) {
                 this(settings.material);
-                this.hardness=settings.hardness;
-                this.resistance=settings.resistance;
-                this.slipperiness=settings.slipperiness;
-                this.velocity=settings.velocity;
-                this.jumpVelocity=settings.jumpVelocity;
-                this.luminance=settings.luminance;
-                this.randomTicks=settings.randomTicks;
-                this.giveItemBlock=settings.giveItemBlock;
-                this.hasBlockEntity=settings.hasBlockEntity;
+                this.hardness = settings.hardness;
+                this.resistance = settings.resistance;
+                this.slipperiness = settings.slipperiness;
+                this.velocity = settings.velocity;
+                this.jumpVelocity = settings.jumpVelocity;
+                this.luminance = settings.luminance;
+                this.randomTicks = settings.randomTicks;
+                this.giveItemBlock = settings.giveItemBlock;
+                this.hasBlockEntity = settings.hasBlockEntity;
             }
 
             public Builder setHardness(float hardness) {

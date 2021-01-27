@@ -1,4 +1,4 @@
-package org.sandboxpowered.api.entity.player;
+package org.sandboxpowered.api.util;
 
 public enum Hand {
     MAIN_HAND,

@@ -1,7 +1,7 @@
 package org.sandboxpowered.api.item;
 
 import org.jetbrains.annotations.Nullable;
-import org.sandboxpowered.api.component.Component;
+import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.state.BlockState;
@@ -56,11 +56,11 @@ public interface Item extends Content<Item> {
         stack.setTag(tag);
     }
 
-    default <X> Mono<X> getComponent(Component<X> component) {
-        return getComponent(component, ItemStack.empty());
+    default <X> Mono<X> getCapability(Capability<X> capability) {
+        return getCapability(capability, ItemStack.empty());
     }
 
-    default <X> Mono<X> getComponent(Component<X> component, ItemStack stack) {
+    default <X> Mono<X> getCapability(Capability<X> capability, ItemStack stack) {
         return Mono.empty();
     }
 

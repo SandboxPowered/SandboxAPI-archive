@@ -1,6 +1,6 @@
 package org.sandboxpowered.api.ecs;
 
-import org.sandboxpowered.api.ecs.component.EntityComponent;
+import org.sandboxpowered.api.ecs.component.Component;
 import org.sandboxpowered.api.inject.Sandbox;
 import org.sandboxpowered.api.world.WorldReader;
 
@@ -21,13 +21,13 @@ public interface EntityBlueprint {
     }
 
     interface Builder {
-        Builder add(Class<? extends EntityComponent> type);
+        Builder add(Class<? extends Component> type);
 
-        Builder addAll(Class<? extends EntityComponent>... types);
+        Builder addAll(Class<? extends Component>... types);
 
-        Builder remove(Class<? extends EntityComponent> type);
+        Builder remove(Class<? extends Component> type);
 
-        Builder removeAll(Class<? extends EntityComponent>... types);
+        Builder removeAll(Class<? extends Component>... types);
 
         EntityBlueprint build(WorldReader reader);
     }

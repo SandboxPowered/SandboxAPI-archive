@@ -1,6 +1,6 @@
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-package org.sandboxpowered.api.component;
+package org.sandboxpowered.api.capability;
 
 import org.sandboxpowered.api.util.annotation.MethodsReturnNonnullByDefault;
 

@@ -1,6 +1,6 @@
 package org.sandboxpowered.api.fluid;
 
-import org.sandboxpowered.api.component.Component;
+import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.util.Mono;
 import org.sandboxpowered.api.util.nbt.CompoundTag;
 import org.sandboxpowered.api.util.nbt.ReadableCompoundTag;
@@ -59,8 +59,8 @@ public interface FluidStack {
 
     CompoundTag asTag();
 
-    default <X> Mono<X> getComponent(Component<X> component) {
-        return getFluid().getComponent(component, this);
+    default <X> Mono<X> getCapability(Capability<X> capability) {
+        return getFluid().getCapability(capability, this);
     }
 
     boolean isEqualTo(FluidStack stack);

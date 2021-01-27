@@ -1,8 +1,9 @@
 package org.sandboxpowered.api.world;
 
+import org.sandboxpowered.api.ecs.CapabilityManager;
 import org.sandboxpowered.api.ecs.ComponentMapper;
 import org.sandboxpowered.api.ecs.EntityBlueprint;
-import org.sandboxpowered.api.ecs.component.EntityComponent;
+import org.sandboxpowered.api.ecs.component.Component;
 import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.state.FluidState;
 import org.sandboxpowered.api.tags.TagManager;
@@ -31,11 +32,13 @@ public interface WorldReader {
 
     TagManager getTagManager();
 
-    <T extends EntityComponent> ComponentMapper<T> getMapper(Class<T> type);
+    <T extends Component> ComponentMapper<T> getMapper(Class<T> type);
 
     int createEntity();
 
     int createEntity(EntityBlueprint blueprint);
 
     void removeEntity(int entity);
+
+    CapabilityManager getCapabilityManager();
 }

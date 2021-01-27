@@ -1,7 +1,7 @@
 package org.sandboxpowered.api.base.kt
 
 import org.sandboxpowered.api.ecs.EntityBlueprint
-import org.sandboxpowered.api.ecs.component.EntityComponent
+import org.sandboxpowered.api.ecs.component.Component
 import org.sandboxpowered.api.registry.Registrar
 
 inline fun <reified T : Registrar.Service> Registrar.useRegistrarService(noinline block: (T) -> Unit) =
@@ -13,6 +13,5 @@ inline fun <reified T : Registrar.Service> Registrar.getRegistrarService(): T? {
     }
 }
 
-inline fun <reified T : EntityComponent> EntityBlueprint.Builder.add(): EntityBlueprint.Builder = add(T::class.java)
-inline fun <reified T : EntityComponent> EntityBlueprint.Builder.remove(): EntityBlueprint.Builder =
-    remove(T::class.java)
+inline fun <reified T : Component> EntityBlueprint.Builder.add(): EntityBlueprint.Builder = add(T::class.java)
+inline fun <reified T : Component> EntityBlueprint.Builder.remove(): EntityBlueprint.Builder = remove(T::class.java)

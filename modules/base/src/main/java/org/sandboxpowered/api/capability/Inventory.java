@@ -1,4 +1,4 @@
-package org.sandboxpowered.api.component;
+package org.sandboxpowered.api.capability;
 
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.internal.IntegerRangeIterator;

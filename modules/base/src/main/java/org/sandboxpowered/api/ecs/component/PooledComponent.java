@@ -5,6 +5,6 @@ package org.sandboxpowered.api.ecs.component;
  * <p>
  * Expects no <code>final</code> fields.
  */
-public interface PooledEntityComponent extends EntityComponent {
+public interface PooledComponent extends Component {
     void reset();
 }

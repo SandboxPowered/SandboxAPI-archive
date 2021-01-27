@@ -26,7 +26,7 @@ public class IntegerRangeIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() throws NoSuchElementException {
-        if(!hasNext())
+        if (!hasNext())
             throw new NoSuchElementException();
         return current++;
     }

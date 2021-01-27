@@ -2,7 +2,7 @@ package org.sandboxpowered.api.item;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.sandboxpowered.api.component.Component;
+import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.ecs.Entity;
 import org.sandboxpowered.api.enchantment.Enchantment;
 import org.sandboxpowered.api.inject.Sandbox;
@@ -119,8 +119,8 @@ public interface ItemStack {
 
     CompoundTag asTag();
 
-    default <X> Mono<X> getComponent(Component<X> component) {
-        return getItem().getComponent(component, this);
+    default <X> Mono<X> getCapability(Capability<X> capability) {
+        return getItem().getCapability(capability, this);
     }
 
     int getMaxCount();

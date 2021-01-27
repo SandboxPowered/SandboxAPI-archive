@@ -1,9 +1,10 @@
 package org.sandboxpowered.api.block;
 
 import org.jetbrains.annotations.Nullable;
-import org.sandboxpowered.api.component.Component;
-import org.sandboxpowered.api.component.Components;
-import org.sandboxpowered.api.component.fluid.FluidLoggingContainer;
+import org.sandboxpowered.api.capability.Capabilities;
+import org.sandboxpowered.api.capability.Capability;
+import org.sandboxpowered.api.capability.fluid.FluidLoggingContainer;
+import org.sandboxpowered.api.ecs.CapabilityManager;
 import org.sandboxpowered.api.item.BaseBlockItem;
 import org.sandboxpowered.api.item.BlockItem;
 import org.sandboxpowered.api.item.Item;
@@ -79,18 +80,19 @@ public class BaseBlock implements Block {
     }
 
     @Override
-    public final <X> Mono<X> getComponent(WorldReader world, Position position, BlockState state, Component<X> component) {
-        return getComponent(world, position, state, component, null);
+    public final <X> Mono<X> getCapability(WorldReader world, Position position, BlockState state, Capability<X> capability) {
+        return getCapability(world, position, state, capability, null);
     }
 
     @Override
-    public <X> Mono<X> getComponent(WorldReader world, Position position, BlockState state, Component<X> component, @Nullable Direction side) {
-        if (this instanceof FluidLoggable && component == Components.FLUID_COMPONENT) {
+    public <X> Mono<X> getCapability(WorldReader world, Position position, BlockState state, Capability<X> capability, @Nullable Direction side) {
+        if (this instanceof FluidLoggable && capability == Capabilities.FLUID_CAPABILITY) {
             return Mono.of(new FluidLoggingContainer((FluidLoggable) this, world, position, state, side)).cast();
         } else if (getSettings().hasBlockEntity()) {
-//            BlockEntity entity = world.getBlockEntity(position);
-//            if (entity != null)
-//                return entity.getComponent(component, side);
+            int be = world.getBlockEntity(position);
+            if(be != -1) {
+                return world.getCapabilityManager().getBlockEntityCapability(be, capability, side);
+            }
         }
         return Mono.empty();
     }

@@ -1,6 +1,6 @@
 package org.sandboxpowered.api.ecs.component;
 
-public class RotationComponent implements PooledEntityComponent {
+public class RotationComponent implements PooledComponent {
     private float yaw;
     private float pitch;
 

@@ -2,7 +2,7 @@ package org.sandboxpowered.api.ecs.component;
 
 import org.sandboxpowered.api.util.math.Vec3d;
 
-public class EntityPositionComponent implements PooledEntityComponent {
+public class EntityPositionComponent implements PooledComponent {
     private double x;
     private double y;
     private double z;
@@ -21,20 +21,20 @@ public class EntityPositionComponent implements PooledEntityComponent {
         return x;
     }
 
-    public double getY() {
-        return y;
-    }
-
-    public double getZ() {
-        return z;
-    }
-
     public void setX(double x) {
         this.x = x;
     }
 
+    public double getY() {
+        return y;
+    }
+
     public void setY(double y) {
         this.y = y;
+    }
+
+    public double getZ() {
+        return z;
     }
 
     public void setZ(double z) {

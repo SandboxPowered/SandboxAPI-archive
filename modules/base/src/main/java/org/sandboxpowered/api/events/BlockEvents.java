@@ -1,9 +1,9 @@
 package org.sandboxpowered.api.events;
 
 import org.sandboxpowered.api.ecs.Entity;
-import org.sandboxpowered.api.entity.player.Hand;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.state.BlockState;
+import org.sandboxpowered.api.util.Hand;
 import org.sandboxpowered.api.util.InteractionResult;
 import org.sandboxpowered.api.util.math.Position;
 import org.sandboxpowered.api.world.World;

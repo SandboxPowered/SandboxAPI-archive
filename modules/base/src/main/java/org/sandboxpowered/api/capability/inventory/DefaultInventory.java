@@ -1,6 +1,6 @@
-package org.sandboxpowered.api.component.inventory;
+package org.sandboxpowered.api.capability.inventory;
 
-import org.sandboxpowered.api.component.Inventory;
+import org.sandboxpowered.api.capability.Inventory;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.util.nbt.CompoundTag;
 import org.sandboxpowered.api.util.nbt.ReadableCompoundTag;

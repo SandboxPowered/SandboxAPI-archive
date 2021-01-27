@@ -2,7 +2,7 @@ package org.sandboxpowered.api.ecs.component;
 
 import org.sandboxpowered.api.util.math.Position;
 
-public class BlockEntityPositionComponent implements PooledEntityComponent {
+public class BlockEntityPositionComponent implements PooledComponent {
     private int x;
     private int y;
     private int z;

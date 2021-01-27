@@ -1,7 +1,8 @@
 package org.sandboxpowered.api.fluid;
 
 
-import org.sandboxpowered.api.component.Component;
+import org.jetbrains.annotations.Nullable;
+import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.item.Item;
 import org.sandboxpowered.api.item.ItemProvider;
@@ -65,11 +66,11 @@ public interface Fluid extends ItemProvider, Content<Fluid> {
      */
     Item asBucket();
 
-    default <X> Mono<X> getComponent(Component<X> component) {
-        return getComponent(component, null);
+    default <X> Mono<X> getCapability(Capability<X> capability) {
+        return getCapability(capability, null);
     }
 
-    default <X> Mono<X> getComponent(Component<X> component, FluidStack stack) {
+    default <X> Mono<X> getCapability(Capability<X> capability, @Nullable FluidStack stack) {
         return Mono.empty();
     }
 

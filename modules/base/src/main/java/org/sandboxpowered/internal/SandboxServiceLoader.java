@@ -9,10 +9,10 @@ import java.util.*;
 
 @Internal
 public final class SandboxServiceLoader {
+    private static final Map<Class<?>, Object> SERVICE_MAP = new HashMap<>();
+
     private SandboxServiceLoader() {
     }
-
-    private static final Map<Class<?>, Object> SERVICE_MAP = new HashMap<>();
 
     @NotNull
     public static <T> T getOrLoadService(Class<T> tClass) {

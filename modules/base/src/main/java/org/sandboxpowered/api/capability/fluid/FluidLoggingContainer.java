@@ -1,8 +1,8 @@
-package org.sandboxpowered.api.component.fluid;
+package org.sandboxpowered.api.capability.fluid;
 
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.block.FluidLoggable;
-import org.sandboxpowered.api.component.FluidContainer;
+import org.sandboxpowered.api.capability.FluidContainer;
 import org.sandboxpowered.api.fluid.FluidStack;
 import org.sandboxpowered.api.state.BlockState;
 import org.sandboxpowered.api.util.Direction;

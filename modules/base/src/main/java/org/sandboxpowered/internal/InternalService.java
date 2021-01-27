@@ -2,8 +2,8 @@ package org.sandboxpowered.internal;
 
 import org.jetbrains.annotations.NotNull;
 import org.sandboxpowered.api.block.Block;
+import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.client.Client;
-import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.fluid.Fluid;
 import org.sandboxpowered.api.fluid.FluidStack;
@@ -38,7 +38,7 @@ public interface InternalService {
 
     Server serverInstance();
 
-    <T> Component<T> componentFunction(Class<T> c);
+    <T> Capability<T> componentFunction(Class<T> c);
 
     FluidStack fluidStackFunction(Fluid fluid, int amount);
 

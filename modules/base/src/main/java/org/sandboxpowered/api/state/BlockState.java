@@ -3,18 +3,14 @@ package org.sandboxpowered.api.state;
 import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.block.Block;
 import org.sandboxpowered.api.block.Material;
+import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.client.GraphicsMode;
-import org.sandboxpowered.api.component.Component;
 import org.sandboxpowered.api.ecs.Entity;
-import org.sandboxpowered.api.entity.player.Hand;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.state.property.PropertyContainer;
 import org.sandboxpowered.api.tags.Tag;
-import org.sandboxpowered.api.util.Direction;
-import org.sandboxpowered.api.util.Mirror;
-import org.sandboxpowered.api.util.Mono;
-import org.sandboxpowered.api.util.Rotation;
+import org.sandboxpowered.api.util.*;
 import org.sandboxpowered.api.util.math.Position;
 import org.sandboxpowered.api.util.math.Vec3d;
 import org.sandboxpowered.api.world.WorldReader;
@@ -46,12 +42,12 @@ public interface BlockState extends PropertyContainer<BlockState> {
         return getBlock().mirror(this, mirror);
     }
 
-    default <X> Mono<X> getComponent(WorldReader world, Position position, Component<X> component) {
-        return getComponent(world, position, component, null);
+    default <X> Mono<X> getCapability(WorldReader world, Position position, Capability<X> capability) {
+        return getCapability(world, position, capability, null);
     }
 
-    default <X> Mono<X> getComponent(WorldReader world, Position position, Component<X> component, @Nullable Direction side) {
-        return getBlock().getComponent(world, position, this, component, side);
+    default <X> Mono<X> getCapability(WorldReader world, Position position, Capability<X> capability, @Nullable Direction side) {
+        return getBlock().getCapability(world, position, this, capability, side);
     }
 
     default boolean emitsRedstone() {

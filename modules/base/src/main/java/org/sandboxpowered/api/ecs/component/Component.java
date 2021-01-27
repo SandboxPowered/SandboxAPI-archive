@@ -4,11 +4,11 @@ package org.sandboxpowered.api.ecs.component;
  * Components are pure data classes with optionally some helper methods.
  * <p/>
  * Extend to create your own components.
- * or extend {@link PooledEntityComponent} to make the component pooled.
+ * or extend {@link PooledComponent} to make the component pooled.
  *
- * @see PooledEntityComponent
+ * @see PooledComponent
  */
-public interface EntityComponent {
+public interface Component {
     default boolean ableToApplyOn(Type type) {
         return true;
     }
