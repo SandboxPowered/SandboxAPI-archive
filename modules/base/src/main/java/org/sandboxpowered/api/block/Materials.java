@@ -38,7 +38,7 @@ public final class Materials {
     public static final Material STONE = get("STONE");
     public static final Material METAL = get("METAL");
     public static final Material SNOW_BLOCK = get("SNOW_BLOCK");
-    public static final Material ANVIL = get("ANVIL");
+    public static final Material HEAVY_METAL = get("HEAVY_METAL");
     public static final Material BARRIER = get("BARRIER");
     public static final Material PISTON = get("PISTON");
     public static final Material UNUSED_PLANT = get("UNUSED_PLANT");

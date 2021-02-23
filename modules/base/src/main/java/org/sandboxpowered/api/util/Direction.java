@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterators;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.util.math.Vec3i;
 
 import java.util.*;
@@ -98,10 +99,12 @@ public enum Direction {
         throw new IllegalArgumentException(String.format("No such direction: %s %s", direction, axis));
     }
 
+    @Range(from = 0, to = 5)
     public int getId() {
         return this.id;
     }
 
+    @Range(from = -1, to = 3)
     public int getHorizontalId() {
         return this.horizontalId;
     }
@@ -196,14 +199,17 @@ public enum Direction {
         }
     }
 
+    @Range(from = -1, to = 1)
     public int getOffsetX() {
         return this.axis == Axis.X ? this.axisDirection.offset() : 0;
     }
 
+    @Range(from = -1, to = 1)
     public int getOffsetY() {
         return this.axis == Axis.Y ? this.axisDirection.offset() : 0;
     }
 
+    @Range(from = -1, to = 1)
     public int getOffsetZ() {
         return this.axis == Axis.Z ? this.axisDirection.offset() : 0;
     }

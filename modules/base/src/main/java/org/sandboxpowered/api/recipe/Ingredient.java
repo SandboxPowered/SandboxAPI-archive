@@ -10,4 +10,6 @@ public interface Ingredient<S> extends Predicate<S> {
     boolean isEmpty();
 
     JsonElement toJson();
+
+    Class<S> getType();
 }

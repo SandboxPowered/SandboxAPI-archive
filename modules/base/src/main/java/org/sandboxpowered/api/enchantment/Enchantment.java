@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.enchantment;
 
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.registry.Registry;
@@ -10,8 +11,10 @@ import org.sandboxpowered.api.world.World;
 public interface Enchantment extends Content<Enchantment> {
     Registry<Enchantment> REGISTRY = Registry.getRegistryFromType(Enchantment.class);
 
+    @Range(from = 1, to = Integer.MAX_VALUE)
     int getMinimumLevel();
 
+    @Range(from = 1, to = Integer.MAX_VALUE)
     int getMaximumLevel();
 
     boolean isAcceptableItem(ItemStack stack);
@@ -45,6 +48,7 @@ public interface Enchantment extends Content<Enchantment> {
             this.weight = weight;
         }
 
+        @Range(from = 1, to = 10)
         public int getWeight() {
             return weight;
         }

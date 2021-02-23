@@ -9,8 +9,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 
 public final class ResourceType<C extends Content<C>> {
+    private static final Pattern VALID_NAME = Pattern.compile("[^a-z_]");
     private static final Map<String, ResourceType<?>> TYPES = new TreeMap<>();
     private final String id;
     private final Function<ResourceMaterial, C> defaultCreator;
@@ -23,7 +25,7 @@ public final class ResourceType<C extends Content<C>> {
     }
 
     public static <C extends Content<C>> ResourceType<C> of(String id, Function<ResourceMaterial, C> defaultCreator, Function<C, ItemStack> stackFunction) {
-        if (!StringUtils.isAllLowerCase(id)) {
+        if (VALID_NAME.matcher(id).matches()) {
             throw new IllegalArgumentException(String.format("Type id must be lowercase got '%s'", id));
         }
         return (ResourceType<C>) TYPES.computeIfAbsent(id, s -> new ResourceType<>(s, defaultCreator, stackFunction));

@@ -860,6 +860,7 @@ public class Items {
     public static final Registry.Entry<Item> PHANTOM_MEMBRANE = get("phantom_membrane");
     public static final Registry.Entry<Item> NAUTILUS_SHELL = get("nautilus_shell");
     public static final Registry.Entry<Item> HEART_OF_THE_SEA = get("heart_of_the_sea");
+    //1.14
     public static final Registry.Entry<Item> CROSSBOW = get("crossbow");
     public static final Registry.Entry<Item> SUSPICIOUS_STEW = get("suspicious_stew");
     public static final Registry.Entry<Item> LOOM = get("loom");
@@ -881,10 +882,14 @@ public class Items {
     public static final Registry.Entry<Item> LANTERN = get("lantern");
     public static final Registry.Entry<Item> SWEET_BERRIES = get("sweet_berries");
     public static final Registry.Entry<Item> CAMPFIRE = get("campfire");
+    // 1.15
     public static final Registry.Entry<Item> HONEYCOMB = get("honeycomb");
     public static final Registry.Entry<Item> BEE_NEST = get("bee_nest");
     public static final Registry.Entry<Item> BEE_HIVE = get("bee_hive");
     public static final Registry.Entry<Item> HONEY_BOTTLE = get("honey_bottle");
+    // 1.16
+    public static final Registry.Entry<Item> NETHERITE_INGOT = get("netherite_ingot");
+    public static final Registry.Entry<Item> NETHERITE_SCRAP = get("netherite_scrap");
 
     private static Registry.Entry<Item> get(String name) {
         return Item.REGISTRY.get(Identity.of("minecraft", name));

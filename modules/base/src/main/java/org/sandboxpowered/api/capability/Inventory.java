@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.capability;
 
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.internal.IntegerRangeIterator;
 
@@ -12,8 +13,10 @@ public interface Inventory extends Iterable<Integer> {
 
     boolean isEmpty();
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     int getSize();
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     int getMaxStackSize(int slot);
 
     ItemStack get(int slot);

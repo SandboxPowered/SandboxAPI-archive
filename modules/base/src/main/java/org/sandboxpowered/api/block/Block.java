@@ -1,6 +1,7 @@
 package org.sandboxpowered.api.block;
 
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.client.GraphicsMode;
 import org.sandboxpowered.api.content.Content;
@@ -10,6 +11,7 @@ import org.sandboxpowered.api.fluid.Fluids;
 import org.sandboxpowered.api.item.Item;
 import org.sandboxpowered.api.item.ItemProvider;
 import org.sandboxpowered.api.item.ItemStack;
+import org.sandboxpowered.api.item.tool.ToolType;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.shape.Shape;
 import org.sandboxpowered.api.state.BlockState;
@@ -42,7 +44,7 @@ public interface Block extends ItemProvider, Content<Block> {
     Settings getSettings();
 
     /**
-     * Grabs the Block as an {@link Item}
+     * Returns the Block in {@link Item} form
      */
     @Override
     Optional<Item> asItem();
@@ -75,6 +77,9 @@ public interface Block extends ItemProvider, Content<Block> {
         return getBaseState();
     }
 
+    /**
+     * If blocks are the same
+     */
     default boolean isSame(Block block) {
         return this == block;
     }
@@ -141,6 +146,9 @@ public interface Block extends ItemProvider, Content<Block> {
         return getMaterial(currentState).isReplaceable();
     }
 
+    /**
+     * If the block acts like air
+     */
     default boolean isAir(BlockState state) {
         return false;
     }
@@ -156,7 +164,7 @@ public interface Block extends ItemProvider, Content<Block> {
         return getMaterial(state).getPistonInteraction();
     }
 
-    default boolean emitsRedstone(BlockState state) {
+    default boolean doesEmitRedstone(BlockState state) {
         return false;
     }
 
@@ -164,14 +172,17 @@ public interface Block extends ItemProvider, Content<Block> {
         return false;
     }
 
+    @Range(from = 0, to = 15)
     default int getComparatorValue(WorldReader world, Position pos, BlockState state) {
         return 0;
     }
 
+    @Range(from = 0, to = 15)
     default int getWeakPower(WorldReader blockView, Position pos, BlockState state, Direction direction) {
         return 0;
     }
 
+    @Range(from = 0, to = 15)
     default int getStrongPower(WorldReader blockView, Position pos, BlockState state, Direction direction) {
         return 0;
     }
@@ -200,8 +211,23 @@ public interface Block extends ItemProvider, Content<Block> {
         return getSettings().getJumpVelocity();
     }
 
+    @Range(from = 0, to = 15)
     default int getLuminance(BlockState state) {
         return getSettings().getLuminance();
+    }
+
+    @Range(from = 0, to = Integer.MAX_VALUE)
+    default int getHarvestLevel(BlockState state) {
+        return getSettings().getHarvestLevel();
+    }
+
+    @Nullable
+    default ToolType getHarvestTool(BlockState state) {
+        return getSettings().getHarvestTool();
+    }
+
+    default boolean doesRequireCorrectToolForDrops(BlockState state) {
+        return getSettings().doesRequireCorrectToolForDrops();
     }
 
     default ItemStack getPickStack(WorldReader reader, Position position, BlockState state) {
@@ -252,8 +278,11 @@ public interface Block extends ItemProvider, Content<Block> {
         private final boolean randomTicks;
         private final boolean giveItemBlock;
         private final boolean hasBlockEntity;
+        private final int harvestLevel;
+        private final ToolType toolType;
+        private final boolean requiresCorrectToolForDrops;
 
-        private Settings(Material material, float hardness, float resistance, float slipperiness, float velocity, float jumpVelocity, int luminance, boolean randomTicks, boolean giveItemBlock, boolean hasBlockEntity) {
+        private Settings(Material material, float hardness, float resistance, float slipperiness, float velocity, float jumpVelocity, int luminance, boolean randomTicks, boolean giveItemBlock, boolean hasBlockEntity, int harvestLevel, ToolType toolType, boolean requiresCorrectToolForDrops) {
             this.material = material;
             this.hardness = hardness;
             this.resistance = resistance;
@@ -264,6 +293,9 @@ public interface Block extends ItemProvider, Content<Block> {
             this.randomTicks = randomTicks;
             this.giveItemBlock = giveItemBlock;
             this.hasBlockEntity = hasBlockEntity;
+            this.harvestLevel = harvestLevel;
+            this.toolType = toolType;
+            this.requiresCorrectToolForDrops = requiresCorrectToolForDrops;
         }
 
         public static Builder builder(Material material) {
@@ -314,12 +346,26 @@ public interface Block extends ItemProvider, Content<Block> {
             return jumpVelocity;
         }
 
+        @Range(from = 0, to = 15)
         public int getLuminance() {
             return luminance;
         }
 
         public boolean hasBlockEntity() {
             return hasBlockEntity;
+        }
+
+        @Range(from = 0, to = Integer.MAX_VALUE)
+        public int getHarvestLevel() {
+            return harvestLevel;
+        }
+
+        public ToolType getHarvestTool() {
+            return toolType;
+        }
+
+        public boolean doesRequireCorrectToolForDrops() {
+            return requiresCorrectToolForDrops;
         }
 
         public static class Builder {
@@ -333,6 +379,9 @@ public interface Block extends ItemProvider, Content<Block> {
             private boolean randomTicks;
             private boolean giveItemBlock = true;
             private boolean hasBlockEntity;
+            private int harvestLevel = -1;
+            private ToolType toolType;
+            private boolean requiresCorrectToolForDrops;
 
             private Builder(Material material) {
                 this.material = material;
@@ -349,6 +398,7 @@ public interface Block extends ItemProvider, Content<Block> {
                 this.randomTicks = settings.randomTicks;
                 this.giveItemBlock = settings.giveItemBlock;
                 this.hasBlockEntity = settings.hasBlockEntity;
+                this.harvestLevel=settings.harvestLevel;
             }
 
             public Builder setHardness(float hardness) {
@@ -406,8 +456,23 @@ public interface Block extends ItemProvider, Content<Block> {
                 return this;
             }
 
+            public Builder setHarvestLevel(int harvestLevel) {
+                this.harvestLevel=harvestLevel;
+                return this;
+            }
+
+            public Builder setHarvestTool(ToolType toolType) {
+                this.toolType = toolType;
+                return this;
+            }
+
+            public Builder requiresCorrectToolForDrops() {
+                this.requiresCorrectToolForDrops = true;
+                return this;
+            }
+
             public Settings build() {
-                return new Settings(material, hardness, resistance, slipperiness, velocity, jumpVelocity, luminance, randomTicks, giveItemBlock, hasBlockEntity);
+                return new Settings(material, hardness, resistance, slipperiness, velocity, jumpVelocity, luminance, randomTicks, giveItemBlock, hasBlockEntity, harvestLevel, toolType, requiresCorrectToolForDrops);
             }
 
             private Builder setRandomTicks(boolean randomTicks) {

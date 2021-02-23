@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.registry;
 
+import org.jetbrains.annotations.Nullable;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.util.Identity;
 import org.sandboxpowered.internal.InternalService;
@@ -45,6 +46,9 @@ public interface Registry<T extends Content<T>> {
         Optional<T> getAsOptional();
 
         T orElse(T other);
+
+        @Nullable
+        T orNull();
 
         T orElseGet(Supplier<T> other);
 

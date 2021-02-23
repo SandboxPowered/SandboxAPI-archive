@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.capability.inventory;
 
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.capability.Inventory;
 import org.sandboxpowered.api.item.ItemStack;
 import org.sandboxpowered.api.util.nbt.CompoundTag;

@@ -2,6 +2,7 @@ package org.sandboxpowered.api.item;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.ecs.Entity;
 import org.sandboxpowered.api.enchantment.Enchantment;
@@ -65,6 +66,7 @@ public interface ItemStack {
 
     Item getItem();
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     int getCount();
 
     ItemStack setCount(int amount);
@@ -89,10 +91,12 @@ public interface ItemStack {
 
     boolean has(Enchantment enchantment);
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     default int getLevel(Registry.Entry<Enchantment> enchantment) {
         return enchantment.isPresent() ? getLevel(enchantment.get()) : 0;
     }
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     int getLevel(Enchantment enchantment);
 
     Set<Enchantment> getEnchantments();
@@ -123,6 +127,7 @@ public interface ItemStack {
         return getItem().getCapability(capability, this);
     }
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     int getMaxCount();
 
     default boolean isIn(@NotNull Tag<Item> tag) {
@@ -139,8 +144,10 @@ public interface ItemStack {
 
     boolean isDamageable();
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     int getMaxDamage();
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     int getDamage();
 
     void damage(int damage, Entity entity);

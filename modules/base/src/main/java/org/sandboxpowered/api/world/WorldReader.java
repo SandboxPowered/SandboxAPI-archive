@@ -1,5 +1,6 @@
 package org.sandboxpowered.api.world;
 
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.ecs.CapabilityManager;
 import org.sandboxpowered.api.ecs.ComponentMapper;
 import org.sandboxpowered.api.ecs.EntityBlueprint;
@@ -28,6 +29,7 @@ public interface WorldReader {
         return height >= 0 && height < 256;
     }
 
+    @Range(from = 0, to = Long.MAX_VALUE)
     long getWorldTime();
 
     TagManager getTagManager();

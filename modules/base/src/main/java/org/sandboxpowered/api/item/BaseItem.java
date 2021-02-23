@@ -1,6 +1,9 @@
 package org.sandboxpowered.api.item;
 
+import org.sandboxpowered.api.item.tool.ToolType;
 import org.sandboxpowered.api.util.Identity;
+
+import java.util.Set;
 
 public class BaseItem implements Item {
     private final Settings settings;
@@ -26,5 +29,10 @@ public class BaseItem implements Item {
             throw new UnsupportedOperationException("Cannot set identity on content with existing identity");
         this.identity = identity;
         return this;
+    }
+
+    @Override
+    public Set<ToolType> getToolTypes(ItemStack stack) {
+        return getSettings().getToolTypes();
     }
 }

@@ -2,6 +2,7 @@ package org.sandboxpowered.api.fluid;
 
 
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.item.Item;
@@ -53,6 +54,7 @@ public interface Fluid extends ItemProvider, Content<Fluid> {
         return asFlowing().getBaseState().with(Properties.FLUID_LEVEL, level).with(Properties.FALLING, falling);
     }
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     default int getTickRate(WorldReader world) {
         return 5;
     }

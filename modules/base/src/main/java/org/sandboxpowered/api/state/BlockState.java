@@ -1,18 +1,21 @@
 package org.sandboxpowered.api.state;
 
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.block.Block;
 import org.sandboxpowered.api.block.Material;
 import org.sandboxpowered.api.capability.Capability;
 import org.sandboxpowered.api.client.GraphicsMode;
 import org.sandboxpowered.api.ecs.Entity;
 import org.sandboxpowered.api.item.ItemStack;
+import org.sandboxpowered.api.item.tool.ToolType;
 import org.sandboxpowered.api.registry.Registry;
 import org.sandboxpowered.api.state.property.PropertyContainer;
 import org.sandboxpowered.api.tags.Tag;
 import org.sandboxpowered.api.util.*;
 import org.sandboxpowered.api.util.math.Position;
 import org.sandboxpowered.api.util.math.Vec3d;
+import org.sandboxpowered.api.world.World;
 import org.sandboxpowered.api.world.WorldReader;
 
 public interface BlockState extends PropertyContainer<BlockState> {
@@ -50,22 +53,25 @@ public interface BlockState extends PropertyContainer<BlockState> {
         return getBlock().getCapability(world, position, this, capability, side);
     }
 
-    default boolean emitsRedstone() {
-        return getBlock().emitsRedstone(this);
+    default boolean doesEmitRedstone() {
+        return getBlock().doesEmitRedstone(this);
     }
 
     default boolean hasComparatorValue() {
         return getBlock().hasComparatorValue(this);
     }
 
+    @Range(from = 0, to = 15)
     default int getComparatorValue(WorldReader world, Position pos) {
         return getBlock().getComparatorValue(world, pos, this);
     }
 
+    @Range(from = 0, to = 15)
     default int getWeakPower(WorldReader blockView, Position pos, Direction direction) {
         return getBlock().getWeakPower(blockView, pos, this, direction);
     }
 
+    @Range(from = 0, to = 15)
     default int getStrongPower(WorldReader blockView, Position pos, Direction direction) {
         return getBlock().getStrongPower(blockView, pos, this, direction);
     }
@@ -84,5 +90,17 @@ public interface BlockState extends PropertyContainer<BlockState> {
 
     default boolean is(Registry.Entry<Block> entry) {
         return entry.isPresent() && is(entry.get());
+    }
+
+    float getDestroySpeed(World world, Position pos);
+
+    @Nullable
+    default ToolType getHarvestTool() {
+        return getBlock().getHarvestTool(this);
+    }
+
+    @Range(from = 0, to = Integer.MAX_VALUE)
+    default int getHarvestLevel() {
+        return getBlock().getHarvestLevel(this);
     }
 }

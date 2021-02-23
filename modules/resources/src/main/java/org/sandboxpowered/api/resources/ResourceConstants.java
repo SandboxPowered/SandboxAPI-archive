@@ -7,6 +7,7 @@ import org.sandboxpowered.api.content.Content;
 import org.sandboxpowered.api.item.BaseItem;
 import org.sandboxpowered.api.item.Item;
 import org.sandboxpowered.api.item.ItemStack;
+import org.sandboxpowered.api.item.tool.ToolType;
 
 import java.util.function.Function;
 
@@ -14,10 +15,10 @@ public final class ResourceConstants {
 
     private static final Function<ResourceMaterial, Item> ITEM_CREATOR = material -> new BaseItem(new Item.Settings());
 
-    public static final ResourceMaterial CLAY = ResourceMaterial.of("clay");
     public static final ResourceMaterial WOOD = ResourceMaterial.of("wood");
     public static final ResourceMaterial COAL = ResourceMaterial.of("coal");
     public static final ResourceMaterial IRON = ResourceMaterial.of("iron");
+    public static final ResourceMaterial COPPER = ResourceMaterial.of("copper");
     public static final ResourceMaterial GOLD = ResourceMaterial.of("gold");
     public static final ResourceMaterial LAPIS = ResourceMaterial.of("lapis");
     public static final ResourceMaterial REDSTONE = ResourceMaterial.of("redstone");
@@ -32,8 +33,10 @@ public final class ResourceConstants {
     public static final ResourceType<Item> DUST = item("dust");
     public static final ResourceType<Item> NUGGET = item("nugget");
     public static final ResourceType<Item> GEM = item("gem");
-    public static final ResourceType<Block> ORE = ResourceType.of("ore", m -> new BaseBlock(Block.Settings.builder(Materials.STONE).build()), ItemStack::of);
-    public static final ResourceType<Block> BLOCK = ResourceType.of("block", m -> new BaseBlock(Block.Settings.builder(Materials.METAL).build()), ItemStack::of);
+    public static final ResourceType<Item> SCRAP = item("scrap");
+    public static final ResourceType<Block> NETHER_ORE = ResourceType.of("nether_ore", m -> new BaseBlock(Block.Settings.builder(Materials.STONE).setStrength(3).requiresCorrectToolForDrops().setHarvestTool(ToolType.PICKAXE).setHarvestLevel(1).build()), ItemStack::of);
+    public static final ResourceType<Block> ORE = ResourceType.of("ore", m -> new BaseBlock(Block.Settings.builder(Materials.STONE).setStrength(3).requiresCorrectToolForDrops().setHarvestTool(ToolType.PICKAXE).setHarvestLevel(1).build()), ItemStack::of);
+    public static final ResourceType<Block> BLOCK = ResourceType.of("block", m -> new BaseBlock(Block.Settings.builder(Materials.METAL).requiresCorrectToolForDrops().setStrength(5.0F, 6.0F).build()), ItemStack::of);
 
     public static ResourceMaterial material(String name) {
         return ResourceMaterial.of(name);

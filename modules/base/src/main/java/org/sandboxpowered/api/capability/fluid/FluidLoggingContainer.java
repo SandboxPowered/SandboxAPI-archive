@@ -1,6 +1,7 @@
 package org.sandboxpowered.api.capability.fluid;
 
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Range;
 import org.sandboxpowered.api.block.FluidLoggable;
 import org.sandboxpowered.api.capability.FluidContainer;
 import org.sandboxpowered.api.fluid.FluidStack;
@@ -31,11 +32,13 @@ public class FluidLoggingContainer implements FluidContainer {
         return loggable.getFluid(world, pos, state, direction).isEmpty();
     }
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     @Override
     public int getSize() {
         return 1;
     }
 
+    @Range(from = 0, to = Integer.MAX_VALUE)
     @Override
     public int getMaxStackSize(int slot) {
         return 1000;

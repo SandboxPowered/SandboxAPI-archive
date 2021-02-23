@@ -10,7 +10,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-@SuppressWarnings("unchecked")
 public class Mono<T> {
     private static final Mono<?> EMPTY = new Mono<>();
     private final T value;
@@ -23,6 +22,7 @@ public class Mono<T> {
         this.value = null;
     }
 
+    @SuppressWarnings("unchecked")
     public static <X> Mono<X> empty() {
         return (Mono<X>) EMPTY;
     }
@@ -40,7 +40,7 @@ public class Mono<T> {
     }
 
     public T get() {
-        if (!isPresent())
+        if (value == null)
             throw new NoSuchElementException("No value present");
         return value;
     }
@@ -73,6 +73,7 @@ public class Mono<T> {
             runnable.run();
     }
 
+    @SuppressWarnings("unchecked")
     public <X> Mono<X> cast() {
         return (Mono<X>) this;
     }

@@ -684,6 +684,9 @@ public final class Blocks {
     public static final Registry.Entry<Block> BEEHIVE = get("beehive");
     public static final Registry.Entry<Block> HONEY_BLOCK = get("honey_block");
     public static final Registry.Entry<Block> HONEYCOMB_BLOCK = get("honeycomb_block");
+    public static final Registry.Entry<Block> NETHER_GOLD_ORE = get("nether_gold_ore");
+    public static final Registry.Entry<Block> NETHERITE_BLOCK = get("netherite_block");
+    public static final Registry.Entry<Block> ANCIENT_DEBRIS = get("ancient_debris");
 
     private Blocks() {
     }
