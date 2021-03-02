@@ -26,7 +26,15 @@ public interface WorldReader {
     }
 
     default boolean isHeightValid(int height) {
-        return height >= 0 && height < 256;
+        return height >= getMinimumWorldHeight() && height < getMaximumWorldHeight();
+    }
+
+    default int getMinimumWorldHeight() {
+        return 0;
+    }
+
+    default int getMaximumWorldHeight() {
+        return 256;
     }
 
     @Range(from = 0, to = Long.MAX_VALUE)
