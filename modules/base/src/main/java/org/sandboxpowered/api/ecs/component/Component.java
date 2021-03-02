@@ -2,7 +2,7 @@ package org.sandboxpowered.api.ecs.component;
 
 /**
  * Components are pure data classes with optionally some helper methods.
- * <p/>
+ * <br>
  * Extend to create your own components.
  * or extend {@link PooledComponent} to make the component pooled.
  *
