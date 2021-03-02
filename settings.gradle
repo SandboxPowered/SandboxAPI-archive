@@ -1,3 +1,11 @@
+pluginManagement {
+    repositories {
+        jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = 'api'
 
 include 'base'
@@ -11,3 +19,6 @@ project(':resources').projectDir = new File('./modules/resources')
 
 include 'base-kt'
 project(':base-kt').projectDir = new File('./modules/base-kt')
+
+include 'rail'
+project(':rail').projectDir = new File('./modules/rail')

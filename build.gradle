@@ -117,8 +117,8 @@ dependencies {
     constraints {
         api project(":base")
         api project(":rendering")
-
         api project(":resources")
+        api project(":rail")
     }
 }
 
