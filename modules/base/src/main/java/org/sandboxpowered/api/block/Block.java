@@ -112,13 +112,8 @@ public interface Block extends ItemProvider, Content<Block> {
     default void onBlockBroken(World world, Position position, BlockState state) {
     }
 
-    /**
-     * Updates the {@link BlockState} when a neighbor block updates
-     *
-     * @return The {@link BlockState} to set in the world
-     */
-    default BlockState updateOnNeighborChanged(BlockState state, Direction direction, BlockState otherState, World world, Position position, Position otherPosition) {
-        return state;
+    default void onNeighborChanged(BlockState state, World world, Position position, Block other, Position otherPosition) {
+
     }
 
     default void randomTick(World serverWorld, Position position, BlockState blockState, Random random) {
