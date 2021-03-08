@@ -4,7 +4,7 @@ public abstract class AbstractProperty<T extends Comparable<T>> implements Prope
     private final Class<T> type;
     private final String name;
 
-    public AbstractProperty(String name, Class<T> type) {
+    protected AbstractProperty(String name, Class<T> type) {
         this.name = name;
         this.type = type;
     }
