@@ -37,6 +37,8 @@ public interface WorldReader {
         return 256;
     }
 
+    boolean hasNeighborSignal(Position position);
+
     @Range(from = 0, to = Long.MAX_VALUE)
     long getWorldTime();
 
