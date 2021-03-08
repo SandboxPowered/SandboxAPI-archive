@@ -21,5 +21,8 @@ public interface WorldWriter {
         return setBlockState(position, state, BlockFlag.DEFAULT);
     }
 
+    default void scheduleTick(Position position, Block block, int delay) {
+    }
+
     void spawnItem(double x, double y, double z, ItemStack stack);
 }

@@ -124,6 +124,9 @@ public interface Block extends ItemProvider, Content<Block> {
     default void randomTick(World serverWorld, Position position, BlockState blockState, Random random) {
     }
 
+    default void scheduledTick(World serverWorld, Position position, BlockState blockState, Random random) {
+    }
+
     /**
      * Creates a blueprint used for all block entities belonging to this block
      * <p>
