@@ -15,4 +15,6 @@ inline fun <reified T : Registrar.Service> Registrar.getRegistrarService() = get
 inline fun <reified T : Component> EntityBlueprint.Builder.add(): EntityBlueprint.Builder = add(T::class.java)
 inline fun <reified T : Component> EntityBlueprint.Builder.remove(): EntityBlueprint.Builder = remove(T::class.java)
 
+inline fun <reified T> FactoryProvider.get(): T = get(T::class.java)
+
 operator fun <T : Content<T>> Registry.Entry<T>.getValue(thisRef: Any?, property: KProperty<*>) = orNull()
